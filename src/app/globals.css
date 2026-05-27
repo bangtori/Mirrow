@@ -4,6 +4,9 @@
   /* 브랜드 */
   --color-accent: #7C6BB5;
   --color-accent-hover: #6A58A3;
+  --color-accent-dim: rgba(124, 107, 181, 0.12);
+  --color-accent-border: rgba(124, 107, 181, 0.28);
+  --color-accent-subtle: rgba(124, 107, 181, 0.06);
 
   /* 텍스트 */
   --color-text: #3D2F6B;
@@ -17,8 +20,17 @@
 
   /* System */
   --color-mr-red: #DC2626;
+  --color-mr-red-hover: #B91C1C;
   --color-mr-yellow: #D97706;
+  --color-mr-yellow-hover: #B45309;
   --color-mr-green: #059669;
+  --color-mr-green-hover: #047857;
+  --color-mr-red-dim: rgba(220, 38, 38, 0.08);
+  --color-mr-red-border: rgba(220, 38, 38, 0.2);
+  --color-mr-yellow-dim: rgba(217, 119, 6, 0.08);
+  --color-mr-yellow-border: rgba(217, 119, 6, 0.25);
+  --color-mr-green-dim: rgba(5, 150, 105, 0.08);
+  --color-mr-green-border: rgba(5, 150, 105, 0.25);  
 
   /* Font */
   --font-body: var(--font-noto-sans-kr);
