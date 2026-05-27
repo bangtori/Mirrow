@@ -1,11 +1,12 @@
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import NoticeBox from "@/components/ui/NoticeBox";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center">
-      <main className="flex flex-col gap-10">
+    <div className="flex flex-col flex-1 items-center justify-center my-10">
+      <main className="flex flex-col gap-10 max-w-lg w-full">
         <section className="flex flex-col gap-6">
         <h2 className="font-body text-text text-4xl">Buttons</h2>
         <div className="flex gap-3">
@@ -39,6 +40,16 @@ export default function Home() {
         <div className="flex flex-col gap-3">
           <Input title="Default" placeholder="placeholder" value="" />
           <Input title="Error" placeholder="placeholder" error="error" value="" />
+        </div>
+       </section>
+
+       <section className="flex flex-col gap-6">
+        <h2 className="font-body text-text text-4xl">NoticeBox</h2>
+        <div className="flex flex-col gap-3">
+          <NoticeBox variant="info">infoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfoinfo</NoticeBox>
+          <NoticeBox variant="warn">warn</NoticeBox>
+          <NoticeBox variant="danger">danger</NoticeBox>
+          <NoticeBox variant="success">success</NoticeBox>
         </div>
        </section>
       </main>
