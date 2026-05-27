@@ -2,6 +2,7 @@ import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import NoticeBox from "@/components/ui/NoticeBox";
+import ResultChip from "@/components/ui/ResultChip";
 import WordChip from "@/components/ui/WordChip";
 
 export default function Home() {
@@ -60,6 +61,15 @@ export default function Home() {
           <WordChip text="selected" isSelected />
           <WordChip text="unSelected" />
           <WordChip text="disabled" disabled />
+        </div>
+       </section>
+
+       <section className="flex flex-col gap-6">
+        <h2 className="font-body text-text text-4xl">ResultChip</h2>
+        <div className="flex gap-3">
+          <ResultChip text="high" percent={88} />
+          <ResultChip text="mid" percent={50} />
+          <ResultChip text="low" percent={0} />
         </div>
        </section>
       </main>
