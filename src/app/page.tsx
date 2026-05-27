@@ -2,6 +2,7 @@ import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import NoticeBox from "@/components/ui/NoticeBox";
+import WordChip from "@/components/ui/WordChip";
 
 export default function Home() {
   return (
@@ -50,6 +51,15 @@ export default function Home() {
           <NoticeBox variant="warn">warn</NoticeBox>
           <NoticeBox variant="danger">danger</NoticeBox>
           <NoticeBox variant="success">success</NoticeBox>
+        </div>
+       </section>
+
+       <section className="flex flex-col gap-6">
+        <h2 className="font-body text-text text-4xl">WordChip</h2>
+        <div className="flex gap-3">
+          <WordChip text="selected" isSelected />
+          <WordChip text="unSelected" />
+          <WordChip text="disabled" disabled />
         </div>
        </section>
       </main>
