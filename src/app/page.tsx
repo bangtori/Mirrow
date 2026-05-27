@@ -1,5 +1,6 @@
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 
 export default function Home() {
   return (
@@ -31,6 +32,13 @@ export default function Home() {
           <Badge variant="success">success</Badge>
           <Badge variant="warn">warn</Badge>
           <Badge variant="danger">danger</Badge>
+        </div>
+       </section>
+       <section className="flex flex-col gap-6">
+        <h2 className="font-body text-text text-4xl">Inputs</h2>
+        <div className="flex flex-col gap-3">
+          <Input title="Default" placeholder="placeholder" value="" />
+          <Input title="Error" placeholder="placeholder" error="error" value="" />
         </div>
        </section>
       </main>
