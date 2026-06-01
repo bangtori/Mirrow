@@ -1,4 +1,5 @@
 'use client'
+import StepIndicator from "@/components/mirrow/StepIndicator";
 import StickyCounter from "@/components/mirrow/StickyCounter";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
@@ -11,7 +12,14 @@ export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center my-10">
       <main className="flex flex-col gap-10 max-w-lg w-full">
-                <StickyCounter count={3} onSubmit={() => {}} />
+        {/* stepper */}
+          <section className="flex flex-col gap-3">
+            <StepIndicator currentStep={1} />
+            <StepIndicator currentStep={2} />
+            <StepIndicator currentStep={3} />
+          </section>
+        {/* test case */}
+          <StickyCounter count={3} onSubmit={() => {}} />
         <section className="flex flex-col gap-6">
         <h2 className="font-body text-text text-4xl">Buttons</h2>
         <div className="flex gap-3">
