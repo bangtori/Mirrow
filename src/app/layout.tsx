@@ -17,7 +17,9 @@ export default function RootLayout({
       lang="en"
       className={`${notoSansKr.variable} ${jetBrainsMono.variable} ${gowunBatang.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
-    </html>
+      <body className="min-h-full flex flex-col bg-card px-4 lg:px-0">
+        <main className="mx-auto w-full max-w-4xl my-15 border border-border bg-bg rounded-3xl">{children}</main>
+      </body>
+    </html >
   );
 }

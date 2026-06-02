@@ -12,7 +12,7 @@ const MAX_STEP = steps.length;
 
 export default function StepIndicator({ currentStep }: StepIndicatorProps) {
     return (
-        <div className="flex justify-between">
+        <div className="flex w-full justify-between">
             {steps.map((step, index) => (
                 <Fragment key={index}>
                     <div className="flex flex-col items-center gap-1 w-16">

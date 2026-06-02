@@ -20,18 +20,18 @@ export default function NoticeBox({
   children,
   className,
 }: NoticeBoxProps) {
-    const icon = (() => {
-        switch(variant) {
-            case 'info':
-                return <Info size={18} className="text-accent"/>
-            case 'warn':
-                return <CircleAlert size={18} className="text-mr-yellow"/>
-            case 'danger':
-                return <CircleX size={18} className="text-mr-red"/>
-            case 'success':
-                return <CircleCheck size={18} className="text-mr-green"/>
-        }
-    })()
+  const icon = (() => {
+    switch (variant) {
+      case 'info':
+        return <Info size={18} className="text-accent" />
+      case 'warn':
+        return <CircleAlert size={18} className="text-mr-yellow" />
+      case 'danger':
+        return <CircleX size={18} className="text-mr-red" />
+      case 'success':
+        return <CircleCheck size={18} className="text-mr-green" />
+    }
+  })()
   return (
     <div
       className={`flex items-center gap-2 border rounded-lg px-4 py-3 font-mono text-sm ${colorStyles[variant]} ${className ?? ''}`}

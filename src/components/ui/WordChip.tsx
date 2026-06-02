@@ -1,5 +1,7 @@
+import { Word } from "@/types";
+
 interface WordChipProps {
-    text: string;
+    word: Word;
     isSelected?: boolean;
     disabled?: boolean;
     onClick?: () => void;
@@ -7,22 +9,29 @@ interface WordChipProps {
 }
 
 export default function WordChip({
-    text, 
-    isSelected = false, 
-    disabled = false, 
-    onClick, 
+    word,
+    isSelected = false,
+    disabled = false,
+    onClick,
     className
-}: WordChipProps) {    
+}: WordChipProps) {
     const selectedStyle = "bg-accent text-white border border-accent-border";
     const unSelectedStyle = "bg-card text-text border border-border";
-    
+
     return (
-        <button 
+        <button
             onClick={onClick}
             disabled={disabled}
-            className={`inline-flex items-center justify-center rounded-lg px-3 py-2 font-mono font-bold text-sm transition-all active:scale-95 disabled:active:scale-100 disabled:opacity-50 disabled:cursor-not-allowed ${isSelected ? selectedStyle : unSelectedStyle} ${className ?? ''}`}
+            className={`inline-flex items-center justify-center rounded-lg px-3 py-2 font-bold transition-all active:scale-95 disabled:active:scale-100 disabled:opacity-50 disabled:cursor-not-allowed ${isSelected ? selectedStyle : unSelectedStyle} ${className ?? ''}`}
         >
-            {text}
+            <div className="flex flex-col items-center">
+                <p className={`font-mono text-sm ${isSelected ? 'text-white' : 'text-muted'}`}>
+                    {word.english}
+                </p>
+                <p className="text-md">
+                    {word.korean}
+                </p>
+            </div>
         </button>
     )
 }
