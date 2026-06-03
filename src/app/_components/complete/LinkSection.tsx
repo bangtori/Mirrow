@@ -9,8 +9,8 @@ type LinkSectionProps = {
 }
 
 export default function LinkSection({ testId, resultId }: LinkSectionProps) {
-    const testUrl = `https://mirrow-ten.vercel.app/test/${testId}`
-    const resultUrl = `https://mirrow-ten.vercel.app/result/${resultId}`
+    const testUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/test/${testId}`
+    const resultUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/result/${resultId}`
 
     const [copiedTestLink, setCopiedTestLink] = useState(false);
     const [copiedResultLink, setCopiedResultLink] = useState(false);

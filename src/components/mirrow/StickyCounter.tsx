@@ -14,6 +14,7 @@ export default function StickyCounter({ count, onSubmit, isLoading }: StickyCoun
 
     return (
         <div className={`sticky bottom-0 inset-x-0 w-full py-4 px-5 bg-white border-t border-border rounded-b-3xl`}>
+            {/* bg-white: 스티키 카운터는 페이지 배경(--bg #fffbf5)과 구분을 위해 의도적으로 흰색 사용 */}
             <div className="flex items-center justify-between">
                 {/* 카운트 정보 */}
                 <div className="flex gap-3">
