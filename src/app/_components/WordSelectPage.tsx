@@ -2,7 +2,7 @@ import { Word } from "@/types";
 import IndicatorSection from "./IndicatorSection";
 import TitleSection from "./wordSelect/TitleSection";
 
-import WordSelectSection from "./wordSelect/WordSelectSection";
+import WordSelectSection from "../../components/mirrow/WordSelectSection";
 import StickyCounter from "@/components/mirrow/StickyCounter";
 
 type WordSelectPageProps = {
@@ -31,7 +31,7 @@ export default function WordSelectPage({ currentStep, selectedWords, isCreatingL
         <div className='flex w-full flex-col'>
             <IndicatorSection currentStep={currentStep} />
             <TitleSection name={name} />
-            <WordSelectSection selectedWords={selectedWords} onSelect={onSelect} isCreatingLinks={isCreatingLinks} />
+            <WordSelectSection selectedWords={selectedWords} onSelect={onSelect} isLoading={isCreatingLinks} />
             <StickyCounter count={selectedWords.length} onSubmit={handleNext} isLoading={isCreatingLinks} />
         </div>
     )

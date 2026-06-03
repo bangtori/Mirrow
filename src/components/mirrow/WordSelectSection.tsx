@@ -5,10 +5,10 @@ import { Word } from "@/types";
 interface WordSelectSectionProps {
     selectedWords: Word[];
     onSelect: (word: Word) => void;
-    isCreatingLinks: boolean;
+    isLoading: boolean;
 }
 
-export default function WordSelectSection({ selectedWords, onSelect, isCreatingLinks }: WordSelectSectionProps) {
+export default function WordSelectSection({ selectedWords, onSelect, isLoading }: WordSelectSectionProps) {
     return (
         <section className="flex flex-wrap gap-x-2 gap-y-3 py-8 px-6">
             {words.map((word) => (
@@ -17,7 +17,7 @@ export default function WordSelectSection({ selectedWords, onSelect, isCreatingL
                     word={word}
                     isSelected={selectedWords.some((w) => w.id === word.id)}
                     onClick={() => onSelect(word)}
-                    disabled={selectedWords.length >= 6 && !selectedWords.some((w) => w.id === word.id) || isCreatingLinks}
+                    disabled={selectedWords.length >= 6 && !selectedWords.some((w) => w.id === word.id) || isLoading}
                 />
             ))}
         </section>

@@ -9,7 +9,7 @@ type LinkSectionProps = {
 }
 
 export default function LinkSection({ testId, resultId }: LinkSectionProps) {
-    const testUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/test/${testId}`
+    const testUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/response/${testId}`
     const resultUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/result/${resultId}`
 
     const [copiedTestLink, setCopiedTestLink] = useState(false);
