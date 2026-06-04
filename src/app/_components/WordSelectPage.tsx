@@ -1,3 +1,5 @@
+'use client'
+
 import { Word } from "@/types";
 import IndicatorSection from "./IndicatorSection";
 import TitleSection from "./wordSelect/TitleSection";

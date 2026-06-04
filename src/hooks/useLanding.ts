@@ -4,21 +4,21 @@ import { useEffect, useState } from 'react';
 
 export function useLanding() {
   const [name, setName] = useState<string>('');
-  const [seletedWords, setSeletedWords] = useState<Word[]>([]);
+  const [selectedWords, setSelectedWords] = useState<Word[]>([]);
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
   const [links, setLinks] = useState<Links | null>(null);
   const [isCreatingLinks, setIsCreatingLinks] = useState<boolean>(false);
 
   useEffect(() => {
     setLinks(null);
-  }, [seletedWords]);
+  }, [selectedWords]);
 
   const handleName = (value: string) => {
     setName(value);
   };
 
-  const handleSeletedWords = (word: Word) => {
-    setSeletedWords((prev) => {
+  const handleSelectedWords = (word: Word) => {
+    setSelectedWords((prev) => {
       if (prev.some((w) => w.id === word.id)) {
         return prev.filter((w) => w.id !== word.id);
       } else {
@@ -37,7 +37,7 @@ export function useLanding() {
   const createLinks = async () => {
     setIsCreatingLinks(true);
     try {
-      const newLinks = await saveTestOwner(name, seletedWords);
+      const newLinks = await saveTestOwner(name, selectedWords);
       setLinks(newLinks);
     } finally {
       setIsCreatingLinks(false);
@@ -46,12 +46,12 @@ export function useLanding() {
 
   return {
     name,
-    seletedWords,
+    selectedWords,
     currentStep,
     links,
     isCreatingLinks,
     handleName,
-    handleSeletedWords,
+    handleSelectedWords,
     handleNextStep,
     createLinks,
   };

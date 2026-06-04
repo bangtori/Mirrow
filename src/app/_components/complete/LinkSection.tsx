@@ -1,3 +1,4 @@
+'use client'
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import NoticeBox from "@/components/ui/NoticeBox";
@@ -9,8 +10,8 @@ type LinkSectionProps = {
 }
 
 export default function LinkSection({ testId, resultId }: LinkSectionProps) {
-    const testUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/response/${testId}`
-    const resultUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/result/${resultId}`
+    const testUrl = `${window.location.origin}/response/${testId}`
+    const resultUrl = `${window.location.origin}/result/${resultId}`
 
     const [copiedTestLink, setCopiedTestLink] = useState(false);
     const [copiedResultLink, setCopiedResultLink] = useState(false);

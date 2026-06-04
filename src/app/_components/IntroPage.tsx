@@ -1,4 +1,4 @@
-
+'use client'
 import IntroHeader from './intro/IntroHeader'
 import DescriptionSection from './intro/DescriptionSection';
 import Input from '@/components/ui/Input';

@@ -38,20 +38,21 @@ export async function saveTestOwner(
 
   // Insert
   const supabase = await createClient();
-  const wordIds = self_words.map((word) => word.id.toString());
+  const wordIds = self_words.map((word) => word.id);
   const { data, error } = await supabase
     .from('tests')
     .insert({
       name: name.trim(),
       self_words: wordIds,
     })
-    .select('id, result_token');
+    .select('id, result_token')
+    .single();
 
-  if (error || !data || data.length === 0) {
+  if (error || !data) {
     console.error('❌ DB 에러:', error);
     throw new Error('테스트를 생성하는데 문제가 발생했습니다.');
   }
 
-  const { id, result_token } = data[0];
+  const { id, result_token } = data;
   return { testId: id, resultId: result_token };
 }
