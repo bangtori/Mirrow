@@ -5,6 +5,13 @@ export function calcJohariResult(
   self_words: Word[],
   responses: Word[],
 ): ResultModel {
+  if (self_words.length !== 6) {
+    throw new Error('6개의 자기 단어가 필요합니다.');
+  }
+
+  if (responses.length % 6 !== 0) {
+    throw new Error('응답한 단어의 개수가 올바르지 않습니다.');
+  }
   const responseCount = responses.length / 6;
   const selfWordIdSet = new Set(self_words.map((w) => w.id));
   const responseIdSet = new Set(responses.map((w) => w.id));
