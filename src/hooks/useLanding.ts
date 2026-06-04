@@ -1,10 +1,7 @@
-import { Word } from '@/types';
+import { saveTestOwner } from '@/actions/tests';
+import { Word, Links } from '@/types';
 import { useEffect, useState } from 'react';
 
-type Links = {
-  testId: string;
-  resultId: string;
-};
 export function useLanding() {
   const [name, setName] = useState<string>('');
   const [seletedWords, setSeletedWords] = useState<Word[]>([]);
@@ -40,21 +37,7 @@ export function useLanding() {
   const createLinks = async () => {
     setIsCreatingLinks(true);
     try {
-      // TODO: 테스트용 로직 실제 비지니스 로직 연결 후 제거 필요
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      // 30% 확률로 에러 발생
-      if (Math.random() < 0.3) {
-        throw new Error('링크 생성에 실패했습니다.');
-      }
-
-      const generateId = () => Math.random().toString(36).slice(2, 10);
-
-      const newLinks: Links = {
-        testId: generateId(),
-        resultId: generateId(),
-      };
-
+      const newLinks = await saveTestOwner(name, seletedWords);
       setLinks(newLinks);
     } finally {
       setIsCreatingLinks(false);
