@@ -33,7 +33,7 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
         <section className="flex flex-col gap-4 py-10 px-8">
             <Card className="flex flex-col gap-4 w-full">
                 <div className="flex flex-col gap-1">
-                    <p className="font-body font-bold text-md text-accent">응답 링크 - 친구들에게 공유</p>
+                    <p className="font-body font-bold text-accent">응답 링크 - 친구들에게 공유</p>
                     <p className="font-body text-muted font-normal text-sm">친구들에게 공유하면 단어를 골라줄 수 있어요</p>
                     <p className="font-body text-muted font-normal text-sm">{testUrl}</p>
                 </div>
@@ -42,7 +42,7 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
 
             <Card className="flex flex-col gap-4 w-full">
                 <div className="flex flex-col gap-1">
-                    <p className="font-body font-bold text-md text-accent">결과 링크 - 본인 보관용</p>
+                    <p className="font-body font-bold text-accent">결과 링크 - 본인 보관용</p>
                     <p className="font-body text-muted font-normal text-sm">친구들의 응답이 쌓이면 여기서 확인할 수 있어요</p>
                     <p className="font-body text-muted font-normal text-sm">{resultUrl}</p>
                 </div>

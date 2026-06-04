@@ -8,12 +8,12 @@ import Button from "@/components/ui/Button";
 type ResultClientPageProps = {
     data: ResultModel;
     ownerName: string;
-    testToken: string;
+    testId: string;
 }
 
-export default function ResultClientPage({ data, ownerName, testToken }: ResultClientPageProps) {
+export default function ResultClientPage({ data, ownerName, testId }: ResultClientPageProps) {
     const handleShareButton = async () => {
-        const url = `${window.location.origin}/response/${testToken}`;
+        const url = `${window.location.origin}/response/${testId}`;
         await navigator.clipboard.writeText(url);
 
         // TODO: - 토스트 메시지로 복사 완료 안내 메시지 띄우기

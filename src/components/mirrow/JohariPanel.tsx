@@ -3,7 +3,8 @@ import ResultChip from "../ui/ResultChip";
 type JohariType = 'open' | 'blind' | 'hidden' | 'unknown'
 interface JohariPanelProps {
     type: JohariType;
-    words: Array<{ word: string, percent: number }>
+    words: Array<{ word: string, percent: number | null }>;
+    locked?: boolean;
 }
 
 const typeTitle: Record<JohariType, string> = {
@@ -20,15 +21,19 @@ const typeDescription: Record<JohariType, string> = {
     unknown: "서로 모르는 나"
 }
 
-export default function JohariPanel({ type, words }: JohariPanelProps) {
+export default function JohariPanel({ type, words, locked = false }: JohariPanelProps) {
     return (
         <div className="flex flex-col gap-1 bg-card rounded-lg p-4 border border-border">
             <h2 className="text-xs font-bold font-mono text-muted">{typeTitle[type]}</h2>
             <p className="text-sm font-bold">{typeDescription[type]}</p>
             <div className="flex flex-wrap gap-2 mt-2">
-                {words.map((word, index) => (
-                    <ResultChip key={index} text={word.word} percent={word.percent} />
-                ))}
+                {locked ? (
+                    <p className="mt-2 text-sm text-muted">응답자가 5명 이상일 때 이 영역에 단어가 표시됩니다.</p>
+                ) : (
+                    words.map((word, index) => (
+                        <ResultChip key={index} text={word.word} percent={word.percent} />
+                    ))
+                )}
             </div>
         </div>
     )

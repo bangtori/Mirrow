@@ -12,7 +12,7 @@ export default function DescriptionSection() {
         <section className="flex flex-col gap-6 py-8 px-6">
             <div className='flex flex-col gap-2'>
                 <h2 className='text-lg font-bold text-text'>Mirrow 란?</h2>
-                <p className='text-md text-muted'>친구들이 나를 어떤 단어로 표현하는지 알 수 있어요. 내가 고른 단어와 비교해 나를 새롭게 발견해 보세요.</p>
+                <p className='text-muted'>친구들이 나를 어떤 단어로 표현하는지 알 수 있어요. 내가 고른 단어와 비교해 나를 새롭게 발견해 보세요.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {panelDescriptions.map((panelDes) => (
