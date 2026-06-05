@@ -3,17 +3,28 @@
 import { TestOwnerSummary, Word } from "@/types";
 import ResponseHeaderSection from "./ResponseHeaderSection";
 import WordSelectSection from "@/components/mirrow/WordSelectSection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation'
 import StickyCounter from "@/components/mirrow/StickyCounter";
+import { getStorage, setStorage, STORAGE_KEYS } from "@/lib/storage";
+import { saveResponse } from "@/actions/response";
 
 type ResponseClientPageProps = {
     ownerInfo: TestOwnerSummary
 }
 
 export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProps) {
+    const respondedList = getStorage(STORAGE_KEYS.RESPONDED) ?? [];
     const router = useRouter()
     const [seletedWords, setSeletedWords] = useState<Word[]>([]);
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+    const [hasResponded, setHasResponded] = useState<boolean>(false);
+
+    useEffect(() => {
+        const hasResponded = respondedList.includes(ownerInfo.id);
+        setHasResponded(hasResponded)
+    }, []);
+
     const handleSeletedWords = (word: Word) => {
         setSeletedWords((prev) => {
             if (prev.some((w) => w.id === word.id)) {
@@ -26,20 +37,12 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
             }
         });
     };
-    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
     const handleSubmit = async () => {
         setIsSubmitting(true);
         try {
-            // TODO: 테스트용 로직 단어 DB 반영 로직 연결 후 제거 필요
-            await new Promise((resolve) => setTimeout(resolve, 500));
-
-            if (Math.random() < 0.1) {
-                throw new Error('단어 제출에 실패했습니다.');
-            }
-
-            // TODO: 중복 체크를 위한 로컬스토리지 로직 작성 필요
-
+            await saveResponse({ test_id: ownerInfo.id, words: seletedWords });
+            setStorage(STORAGE_KEYS.RESPONDED, [...respondedList, ownerInfo.id]);
             router.push(`/result/${ownerInfo.result_token}`)
         } catch (error) {
             console.log(error)
@@ -48,6 +51,16 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
             setIsSubmitting(false);
         }
     };
+
+    // 이미 응답한 사람의 경우
+    if (hasResponded) {
+        return (
+            <div className="flex w-full flex-col">
+                <ResponseHeaderSection name={ownerInfo.name} />
+                <h2 className="py-10 px-8 font-black text-xl">이미 응답한 대상입니다.</h2>
+            </div>
+        )
+    }
 
     return (
         <div className="flex w-full flex-col">

@@ -1,22 +1,18 @@
 import { Word } from './word';
 
 export type TestResultDTO = {
-  ownerInfo: TestOwnerDTO;
-  responses: ResponseDTO[];
-};
-
-export type TestOwnerDTO = {
   id: string;
   name: string;
   result_token: string;
   is_active: boolean;
-  self_words: string[]; // id 배열
+  self_words: number[];
+  responses: ResponseDTO[];
 };
 
 export type ResponseDTO = {
   id: string;
   test_id: string;
-  words: string[]; // id 배열
+  words: number[]; // id 배열
 };
 
 export type TestResult = {
