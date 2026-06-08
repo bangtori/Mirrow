@@ -1,0 +1,47 @@
+'use server';
+import { createClient } from '@/lib/supabase/server';
+import { TestResult, TestResultDTO } from '@/types';
+import { mapWordIdToWord } from '@/utils/word';
+
+export async function getResult(token: string): Promise<TestResult> {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from('tests')
+    .select('*, responses(*)')
+    .eq('result_token', token)
+    .single();
+
+  if (error || !data) {
+    throw new Error('결과 정보를 찾을 수 없습니다.');
+  }
+
+  if (!data.is_active) {
+    throw new Error('비활성화된 링크입니다.');
+  }
+
+  try {
+    const dtoData = data as TestResultDTO;
+    return mapDtoToModel(dtoData);
+  } catch (error) {
+    console.error('❌ 변환 에러:', error);
+    throw new Error('결과 정보를 변환하는데 실패했습니다.');
+  }
+}
+
+function mapDtoToModel(dtoData: TestResultDTO): TestResult {
+  const responseWords = dtoData.responses.flatMap((response) =>
+    response.words.map((wordId) => mapWordIdToWord(wordId)),
+  );
+
+  return {
+    ownerInfo: {
+      id: dtoData.id,
+      name: dtoData.name,
+      result_token: dtoData.result_token,
+      is_active: dtoData.is_active,
+      self_words: dtoData.self_words.map((wordId) => mapWordIdToWord(wordId)),
+    },
+    responses: responseWords,
+  };
+}

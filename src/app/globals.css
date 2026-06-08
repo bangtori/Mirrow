@@ -1,26 +1,44 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* 브랜드 */
+  --color-accent: #7c6bb5;
+  --color-accent-hover: #6a58a3;
+  --color-accent-dim: rgba(124, 107, 181, 0.12);
+  --color-accent-border: rgba(124, 107, 181, 0.28);
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* 텍스트 */
+  --color-text: #3d2f6b;
+  --color-muted: #9b8fcc;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* 배경·경계 */
+  --color-bg: #fffbf5;
+  --color-card: #f5f0ff;
+  --color-card2: #ede9ff;
+  --color-border: #d4ccff;
+
+  /* System */
+  --color-mr-red: #dc2626;
+  --color-mr-red-hover: #b91c1c;
+  --color-mr-yellow: #d97706;
+  --color-mr-yellow-hover: #b45309;
+  --color-mr-green: #059669;
+  --color-mr-green-hover: #047857;
+  --color-mr-red-dim: rgba(220, 38, 38, 0.08);
+  --color-mr-red-border: rgba(220, 38, 38, 0.2);
+  --color-mr-yellow-dim: rgba(217, 119, 6, 0.08);
+  --color-mr-yellow-border: rgba(217, 119, 6, 0.25);
+  --color-mr-green-dim: rgba(5, 150, 105, 0.08);
+  --color-mr-green-border: rgba(5, 150, 105, 0.25);
+
+  /* Font */
+  --font-body: var(--font-noto-sans-kr);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-gowun-batang);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-card);
+  color: var(--color-text);
+  font-family: var(--font-body);
 }
