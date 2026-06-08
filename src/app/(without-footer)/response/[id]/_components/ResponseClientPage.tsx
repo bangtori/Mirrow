@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation'
 import StickyCounter from "@/components/mirrow/StickyCounter";
 import { getStorage, setStorage, STORAGE_KEYS } from "@/lib/storage";
 import { saveResponse } from "@/actions/response";
+import { getObjectParticle } from "@/utils/korean";
 
 type ResponseClientPageProps = {
     ownerInfo: TestOwnerSummary
@@ -68,7 +69,7 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
     return (
         <div className="flex w-full flex-col">
             <ResponseHeaderSection name={ownerInfo.name} />
-            <h2 className="py-10 px-8 border-b border-border font-black text-xl">"{ownerInfo.name}"을(를) 나타내는 단어 6개를 골라주세요.</h2>
+            <h2 className="py-10 px-8 border-b border-border font-black text-xl">"{ownerInfo.name}"{getObjectParticle(ownerInfo.name)} 나타내는 단어 6개를 골라주세요.</h2>
             <WordSelectSection selectedWords={selectedWords} onSelect={handleSelectedWords} isLoading={isSubmitting} />
             <StickyCounter count={selectedWords.length} onSubmit={handleSubmit} isLoading={isSubmitting} />
         </div>
