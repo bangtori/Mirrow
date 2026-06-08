@@ -3,7 +3,7 @@ import type { ChangeEventHandler, KeyboardEventHandler } from 'react';
 type TextFieldProps = {
   placeholder?: string;
   title?: string;
-  error?: string
+  error?: string | null;
   value: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
@@ -25,16 +25,16 @@ export default function TextField({
 
   return (
     <div className='flex flex-col gap-1'>
-        {title && <label className='pl-3 font-body font-bold text-text text-sm'>{title}</label>}
-        <input 
-      type="text"
-      value={value}
-      onChange={onChange}
-      onKeyDown={onKeyDown}
-      placeholder={placeholder}
-      className={`w-full bg-card text-text border rounded-xl placeholder-muted px-6 py-4 focus:outline-none ${error ? errorStyle : primaryStyle} ${className ? className : ''}`}
-    />
-    {error && <p className='pl-3 font-body text-mr-red text-sm'>{error}</p>}
+      {title && <label className='pl-3 font-body font-bold text-text text-sm'>{title}</label>}
+      <input
+        type="text"
+        value={value}
+        onChange={onChange}
+        onKeyDown={onKeyDown}
+        placeholder={placeholder}
+        className={`w-full bg-card text-text border rounded-xl placeholder-muted px-6 py-4 focus:outline-none ${error ? errorStyle : primaryStyle} ${className ? className : ''}`}
+      />
+      {error && <p className='pl-3 font-body text-mr-red text-sm'>{error}</p>}
     </div>
   );
 }

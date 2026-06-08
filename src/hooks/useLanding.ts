@@ -9,6 +9,7 @@ export function useLanding() {
   const [currentStep, setCurrentStep] = useState<1 | 2 | 3>(1);
   const [links, setLinks] = useState<Links | null>(null);
   const [isCreatingLinks, setIsCreatingLinks] = useState<boolean>(false);
+  const [nameError, setNameError] = useState<string | null>(null);
 
   useEffect(() => {
     setLinks(null);
@@ -16,6 +17,9 @@ export function useLanding() {
 
   const handleName = (value: string) => {
     setName(value);
+    if (nameError && value.trim()) {
+      setNameError(null);
+    }
   };
 
   const handleSelectedWords = (word: Word) => {
@@ -29,6 +33,19 @@ export function useLanding() {
         return [...prev, word];
       }
     });
+  };
+
+  const handleIntroNext = () => {
+    const trimmedName = name.trim();
+
+    if (!trimmedName) {
+      setNameError('이름을 입력해주세요.');
+      return;
+    }
+
+    setName(trimmedName);
+    setNameError(null);
+    handleNextStep();
   };
 
   const handleNextStep = () => {
@@ -64,6 +81,7 @@ export function useLanding() {
 
   return {
     name,
+    nameError,
     selectedWords,
     currentStep,
     links,
@@ -71,6 +89,7 @@ export function useLanding() {
     handleName,
     handleSelectedWords,
     handleNextStep,
+    handleIntroNext,
     createLinks,
   };
 }
