@@ -28,7 +28,7 @@ export default function DescriptionSection() {
                 <ul className='flex flex-col gap-2 text-sm list-disc pl-5 marker:text-accent text-accent'>
                     <li>전문 심리 도구가 아니에요 — 참고용으로만 활용해주세요</li>
                     <li>나를 잘 아는 친한 친구들에게 공유하면 더 의미있어요</li>
-                    <li>최대 15명까지 응답받을 수 있어요</li>
+                    <li>친한 친구 3~8명 정도의 응답을 받을 때 가장 의미있는 결과를 얻을 수 있어요</li>
                 </ul>
             </Card>
         </section>
