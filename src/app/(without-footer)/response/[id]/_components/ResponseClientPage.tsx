@@ -20,8 +20,10 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
     const [hasResponded, setHasResponded] = useState<boolean>(false);
 
     useEffect(() => {
+        const mirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
         const respondedList = getStorage(STORAGE_KEYS.RESPONDED) ?? [];
-        const hasResponded = respondedList.includes(ownerInfo.id);
+        const isOwner = mirrowList.some((item) => item.testId === ownerInfo.id);
+        const hasResponded = respondedList.includes(ownerInfo.id) || isOwner;
         setHasResponded(hasResponded)
     }, [ownerInfo.id]);
 
@@ -58,7 +60,7 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
         return (
             <div className="flex w-full flex-col">
                 <ResponseHeaderSection name={ownerInfo.name} />
-                <h2 className="py-10 px-8 font-black text-xl">이미 응답한 대상입니다.</h2>
+                <h2 className="py-10 px-8 font-black text-xl">이미 응답한 Mirrow에요.</h2>
             </div>
         )
     }

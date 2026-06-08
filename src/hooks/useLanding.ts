@@ -1,5 +1,6 @@
 import { saveTestOwner } from '@/actions/tests';
-import { Word, Links } from '@/types';
+import { getStorage, setStorage, STORAGE_KEYS } from '@/lib/storage';
+import { Word, Links, MirrowItem } from '@/types';
 import { useEffect, useState } from 'react';
 
 export function useLanding() {
@@ -38,10 +39,27 @@ export function useLanding() {
     setIsCreatingLinks(true);
     try {
       const newLinks = await saveTestOwner(name, selectedWords);
+      saveLocalStorage(newLinks);
       setLinks(newLinks);
     } finally {
       setIsCreatingLinks(false);
     }
+  };
+
+  const saveLocalStorage = (link: Links) => {
+    const baseUrl = window.location.origin;
+    const testUrl = `${baseUrl}/response/${link.testId}`;
+    const resultUrl = `${baseUrl}/result/${link.resultId}`;
+    const mirrowItem: MirrowItem = {
+      testId: link.testId,
+      userName: name,
+      resultUrl,
+      responseUrl: testUrl,
+      createdAt: new Date().toISOString(),
+    };
+
+    const currentList = getStorage(STORAGE_KEYS.LIST) ?? [];
+    setStorage(STORAGE_KEYS.LIST, [...currentList, mirrowItem]);
   };
 
   return {

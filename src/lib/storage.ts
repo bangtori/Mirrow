@@ -1,11 +1,15 @@
+import { MirrowItem } from '@/types';
+
 export const STORAGE_KEYS = {
   RESPONDED: 'mirrow_responded',
+  LIST: 'mirrow_list',
 } as const;
 
 type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];
 
 type StorageValueMap = {
   mirrow_responded: string[];
+  mirrow_list: MirrowItem[];
 };
 
 export function setStorage<K extends StorageKey>(
