@@ -1,6 +1,7 @@
 import CompleteTitleSection from "./complete/CompleteTitleSection";
 import IndicatorSection from "./IndicatorSection";
 import LinkSection from "./complete/LinkSection";
+import NoticeBox from "@/components/ui/NoticeBox";
 
 
 type CompletePageProps = {

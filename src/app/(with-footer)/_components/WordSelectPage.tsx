@@ -4,7 +4,7 @@ import { Word } from "@/types";
 import IndicatorSection from "./IndicatorSection";
 import TitleSection from "./wordSelect/TitleSection";
 
-import WordSelectSection from "../../components/mirrow/WordSelectSection";
+import WordSelectSection from "../../../components/mirrow/WordSelectSection";
 import StickyCounter from "@/components/mirrow/StickyCounter";
 
 type WordSelectPageProps = {

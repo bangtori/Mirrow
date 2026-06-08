@@ -50,7 +50,7 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
                 <Button variant="primary" appearance="outline" size="lg" onClick={() => handleCopy(resultUrl, setCopiedResultLink)}>{copiedResultLink ? "복사 완료" : "결과 링크 복사"}</Button>
             </Card>
 
-            <NoticeBox variant="warn">결과 링크는 다시 발급받을 수 없어요. 반드시 저장해두세요.</NoticeBox>
+            <NoticeBox variant="warn">결과 링크는 현재 기기에 자동 저장됩니다. 다만 브라우저 데이터를 삭제하거나 다른 기기에서 접속하면 사라질 수 있어요. 결과를 오래 보관하고 싶다면 링크를 복사해 저장해주세요.</NoticeBox>
         </section>
     )
 }
