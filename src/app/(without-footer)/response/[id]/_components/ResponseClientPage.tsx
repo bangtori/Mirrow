@@ -14,19 +14,19 @@ type ResponseClientPageProps = {
 }
 
 export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProps) {
-    const respondedList = getStorage(STORAGE_KEYS.RESPONDED) ?? [];
     const router = useRouter()
-    const [seletedWords, setSeletedWords] = useState<Word[]>([]);
+    const [selectedWords, setSelectedWords] = useState<Word[]>([]);
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [hasResponded, setHasResponded] = useState<boolean>(false);
 
     useEffect(() => {
+        const respondedList = getStorage(STORAGE_KEYS.RESPONDED) ?? [];
         const hasResponded = respondedList.includes(ownerInfo.id);
         setHasResponded(hasResponded)
-    }, []);
+    }, [ownerInfo.id]);
 
-    const handleSeletedWords = (word: Word) => {
-        setSeletedWords((prev) => {
+    const handleSelectedWords = (word: Word) => {
+        setSelectedWords((prev) => {
             if (prev.some((w) => w.id === word.id)) {
                 return prev.filter((w) => w.id !== word.id);
             } else {
@@ -39,13 +39,14 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
     };
 
     const handleSubmit = async () => {
+        const respondedList = getStorage(STORAGE_KEYS.RESPONDED) ?? [];
         setIsSubmitting(true);
         try {
-            await saveResponse({ test_id: ownerInfo.id, words: seletedWords });
+            await saveResponse({ test_id: ownerInfo.id, words: selectedWords });
             setStorage(STORAGE_KEYS.RESPONDED, [...respondedList, ownerInfo.id]);
             router.push(`/result/${ownerInfo.result_token}`)
         } catch (error) {
-            console.log(error)
+            console.error(error)
             alert("단어 제출에 실패했습니다. 다시 시도해주세요. 문제가 계속될 시 문의주세요.")
         } finally {
             setIsSubmitting(false);
@@ -66,8 +67,8 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
         <div className="flex w-full flex-col">
             <ResponseHeaderSection name={ownerInfo.name} />
             <h2 className="py-10 px-8 border-b border-border font-black text-xl">"{ownerInfo.name}"을(를) 나타내는 단어 6개를 골라주세요.</h2>
-            <WordSelectSection selectedWords={seletedWords} onSelect={handleSeletedWords} isLoading={isSubmitting} />
-            <StickyCounter count={seletedWords.length} onSubmit={handleSubmit} isLoading={isSubmitting} />
+            <WordSelectSection selectedWords={selectedWords} onSelect={handleSelectedWords} isLoading={isSubmitting} />
+            <StickyCounter count={selectedWords.length} onSubmit={handleSubmit} isLoading={isSubmitting} />
         </div>
     )
 }
