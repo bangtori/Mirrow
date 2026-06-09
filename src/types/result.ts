@@ -44,3 +44,9 @@ export type ResultModel = {
   responses_count: number;
   result: JohariResult;
 };
+
+export type VisitorComparison = {
+  shared: Word[]; // 교집합 - 둘 다 선택
+  onlyVisitor: Word[]; // 응답자만 선택
+  onlyOwner: Word[]; // 출제자만 선택
+};

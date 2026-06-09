@@ -1,9 +1,10 @@
 
-type Variant = 'default' | 'accent' | 'accent-dim';
+type Variant = 'default' | 'accent' | 'accent-dim' | 'border';
 const colorStyles = {
     default: 'bg-card border-border',
     accent: 'bg-accent border-accent text-white',
     'accent-dim': 'bg-accent-dim border-border',
+    border: 'bg-white border-border',
 }
 
 type CardProps = {
