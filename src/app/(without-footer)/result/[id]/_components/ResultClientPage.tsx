@@ -23,8 +23,9 @@ export default function ResultClientPage({ data, ownerName, testId }: ResultClie
             <ResultHeaderSection name={ownerName} responseCount={data.responses_count} />
             <ResultBodySection resultModel={data} responseCount={data.responses_count} />
             <ResultDescriptionSection />
-            <div className="py-10 px-8 w-full">
+            <div className="py-10 px-8 w-full flex flex-col gap-2">
                 <Button appearance='outline' size='lg' className="w-full" onClick={handleShareButton}>응답 링크 다시 공유하기</Button>
+                <Button size='lg' className="w-full" onClick={() => window.location.href = '/'}>처음으로 돌아가기</Button>
             </div>
         </section>
     )
