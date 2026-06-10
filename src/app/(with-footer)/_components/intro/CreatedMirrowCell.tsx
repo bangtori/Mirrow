@@ -1,8 +1,12 @@
 import Button from '@/components/ui/Button'
 import Card from '@/components/ui/Card'
 import { MirrowItem } from '@/types'
-
+import { useRouter } from 'next/navigation';
 export default function CreatedMirrowCell({ mirrow }: { mirrow: MirrowItem }) {
+    const router = useRouter();
+    const handleResultClick = (resultUrl: string) => {
+        router.push(resultUrl);
+    };
     return (
         <li className=''>
             <Card variant='border'>
@@ -12,7 +16,7 @@ export default function CreatedMirrowCell({ mirrow }: { mirrow: MirrowItem }) {
                         <p className='text-xs text-muted'>{new Date(mirrow.createdAt).toLocaleDateString('ko-KR')} 생성</p>
                     </div>
                     <div>
-                        <Button>결과 보기</Button>
+                        <Button onClick={() => handleResultClick(mirrow.resultUrl)}>결과 보기</Button>
                     </div>
                 </div>
             </Card>

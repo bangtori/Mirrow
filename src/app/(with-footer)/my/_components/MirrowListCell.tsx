@@ -15,7 +15,8 @@ export default function MirrowListCell({ mirrow }: MirrowListCellProps) {
     };
     const handleResponseCopyClick = async (responseURL: string) => {
         try {
-            await navigator.clipboard.writeText(responseURL);
+            const baseUrl = window.location.origin;
+            await navigator.clipboard.writeText(`${baseUrl}${responseURL}`);
             setCopied(true);
 
             setTimeout(() => {

@@ -64,9 +64,8 @@ export function useLanding() {
   };
 
   const saveLocalStorage = (link: Links) => {
-    const baseUrl = window.location.origin;
-    const testUrl = `${baseUrl}/response/${link.testId}`;
-    const resultUrl = `${baseUrl}/result/${link.resultId}`;
+    const testUrl = `/response/${link.testId}`;
+    const resultUrl = `/result/${link.resultId}`;
     const mirrowItem: MirrowItem = {
       testId: link.testId,
       userName: name,
