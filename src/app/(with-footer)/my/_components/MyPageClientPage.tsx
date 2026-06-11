@@ -26,16 +26,16 @@ export default function MyPageClientPage() {
         router.push('/');
     };
 
-    if (mirrowList.length === 0) {
-        return <EmptyView />;
-    }
-
     if (!isStorageLoaded) {
         return (
             <div className="px-8 py-10">
                 <p className="text-sm text-muted">Mirrow를 불러오는 중이에요.</p>
             </div>
         );
+    }
+
+    if (mirrowList.length === 0) {
+        return <EmptyView />;
     }
 
     return (

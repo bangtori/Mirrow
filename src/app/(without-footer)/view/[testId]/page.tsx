@@ -1,5 +1,3 @@
-'use server'
-
 import { getVisitorResult } from "@/actions/response";
 import { calculateVisitorComparison } from "@/utils/johari";
 import VisitorViewClientPage from "./_components/VisitorViewClientPage";
