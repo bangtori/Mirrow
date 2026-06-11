@@ -1,4 +1,9 @@
+import type { ResponseRow, TestRow } from './database';
 import { Word } from './word';
+
+export type TestResultSelect = TestRow & {
+  responses: ResponseRow[];
+};
 
 export type TestResultDTO = {
   id: string;

@@ -1,9 +1,12 @@
+'use client'
 import Button from "@/components/ui/Button"
 import Image from "next/image"
-export default function EmptyView() {
+import { useRouter } from 'next/navigation';
 
+export default function EmptyView() {
+    const router = useRouter();
     const handleClick = () => {
-        window.location.href = "/"
+        router.push("/")
     };
     return (
         <div className="flex flex-col gap-3 items-center py-10 px-8">

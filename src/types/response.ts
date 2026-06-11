@@ -1,3 +1,4 @@
+import type { ResponseRow, TestRow } from './database';
 import { Word } from './word';
 
 export type UserResponse = {
@@ -5,8 +6,10 @@ export type UserResponse = {
   words: Word[];
 };
 
-export type ResponseToken = {
-  visitor_token: string;
+export type ResponseToken = Pick<ResponseRow, 'visitor_token'>;
+
+export type VisitorResultSelect = Pick<ResponseRow, 'words'> & {
+  tests: Pick<TestRow, 'name' | 'self_words'>;
 };
 
 export type VisitorResultDTO = {
