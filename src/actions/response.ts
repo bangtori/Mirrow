@@ -4,6 +4,7 @@ import {
   UserResponse,
   VisitorResult,
   VisitorResultDTO,
+  VisitorResultSelect,
 } from '@/types/response';
 import { createClient } from '@/lib/supabase/server';
 import { mapWordIdToWord } from '@/utils/word';
@@ -37,7 +38,7 @@ export async function saveResponse(
     throw new Error('응답 저장 중 오류가 발생했습니다.');
   }
 
-  return data as ResponseToken;
+  return data;
 }
 
 export async function getVisitorResult(
@@ -64,12 +65,24 @@ export async function getVisitorResult(
   }
 
   try {
-    const dtoData = data as unknown as VisitorResultDTO;
+    const dtoData = mapVisitorResultSelectToDto(data);
     return mapVisitorResultDtoToModel(dtoData);
   } catch (error) {
     console.error('❌ 변환 에러:', error);
     throw new Error('결과 정보를 변환하는데 실패했습니다.');
   }
+}
+
+function mapVisitorResultSelectToDto(
+  selectData: VisitorResultSelect,
+): VisitorResultDTO {
+  return {
+    words: selectData.words,
+    tests: {
+      name: selectData.tests.name,
+      self_words: selectData.tests.self_words,
+    },
+  };
 }
 
 function mapVisitorResultDtoToModel(dtoData: VisitorResultDTO): VisitorResult {
