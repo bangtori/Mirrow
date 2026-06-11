@@ -45,15 +45,17 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
         const respondedList = getStorage(STORAGE_KEYS.RESPONDED) ?? [];
         setIsSubmitting(true);
         try {
-            await saveResponse({ test_id: ownerInfo.id, words: selectedWords });
+            const responseToken = await saveResponse({ test_id: ownerInfo.id, words: selectedWords });
             setStorage(STORAGE_KEYS.RESPONDED, [...respondedList, ownerInfo.id]);
-            router.push(`/result/${ownerInfo.result_token}`)
+            router.push(`/view/${ownerInfo.id}?responseToken=${responseToken.visitor_token}`)
         } catch (error) {
             console.error(error)
             alert("단어 제출에 실패했습니다. 다시 시도해주세요. 문제가 계속될 시 문의주세요.")
-        } finally {
-            setIsSubmitting(false);
         }
+        // 작업 완료 후 페이지 이동까지의 간격에서 버튼이 활성화 상태가 되어 제거 -> 이지가 이동되면 어차피 컴포넌트가 언마운트됨
+        // finally {
+        //     setIsSubmitting(false);
+        // }
     };
 
     // 이미 응답한 사람의 경우

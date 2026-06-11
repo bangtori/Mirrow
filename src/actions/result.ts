@@ -1,6 +1,6 @@
 'use server';
 import { createClient } from '@/lib/supabase/server';
-import { TestResult, TestResultDTO } from '@/types';
+import { TestResult, TestResultDTO, TestResultSelect } from '@/types';
 import { mapWordIdToWord } from '@/utils/word';
 
 export async function getResult(token: string): Promise<TestResult> {
@@ -21,12 +21,27 @@ export async function getResult(token: string): Promise<TestResult> {
   }
 
   try {
-    const dtoData = data as TestResultDTO;
+    const dtoData = mapTestResultSelectToDto(data);
     return mapDtoToModel(dtoData);
   } catch (error) {
     console.error('❌ 변환 에러:', error);
     throw new Error('결과 정보를 변환하는데 실패했습니다.');
   }
+}
+
+function mapTestResultSelectToDto(selectData: TestResultSelect): TestResultDTO {
+  return {
+    id: selectData.id,
+    name: selectData.name,
+    result_token: selectData.result_token,
+    is_active: selectData.is_active,
+    self_words: selectData.self_words,
+    responses: selectData.responses.map((response) => ({
+      id: response.id,
+      test_id: response.test_id,
+      words: response.words,
+    })),
+  };
 }
 
 function mapDtoToModel(dtoData: TestResultDTO): TestResult {

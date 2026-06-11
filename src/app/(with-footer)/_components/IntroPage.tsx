@@ -1,8 +1,13 @@
+'use client';
 import IntroHeader from './intro/IntroHeader'
 import DescriptionSection from './intro/DescriptionSection';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import IndicatorSection from './IndicatorSection';
+import CreatedMirrowSection from './intro/CreatedMirrowSection';
+import { MirrowItem } from '@/types';
+import { getStorage, STORAGE_KEYS } from '@/lib/storage';
+import { useEffect, useState } from 'react';
 
 
 type IntroPageProps = {
@@ -13,10 +18,23 @@ type IntroPageProps = {
     error: string | null;
 }
 export default function IntroPage({ currentStep, name, onChange, onNext, error }: IntroPageProps) {
+    const [mirrowList, setMirrowList] = useState<MirrowItem[]>([]);
+    const [isStorageLoaded, setIsStorageLoaded] = useState(false);
+
+    useEffect(() => {
+        const savedMirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
+        const sliceList = savedMirrowList
+            .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+            .slice(0, 2)
+        setMirrowList(sliceList);
+        setIsStorageLoaded(true);
+    }, []);
+
     return (
         <div className='flex w-full flex-col pb-8'>
             <IntroHeader />
             <IndicatorSection currentStep={currentStep} />
+            {isStorageLoaded && <CreatedMirrowSection mirrowList={mirrowList} />}
             <DescriptionSection />
             <div className="px-6">
                 <Input placeholder='홍길동' title='이름을 입력해주세요.' error={error} value={name} onChange={(e) => onChange(e.target.value)} />

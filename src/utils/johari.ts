@@ -1,5 +1,11 @@
 import { words } from '@/data/words';
-import { JohariResult, ResultModel, Word, WordResult } from '@/types';
+import {
+  JohariResult,
+  ResultModel,
+  VisitorComparison,
+  Word,
+  WordResult,
+} from '@/types';
 
 export function calcJohariResult(
   self_words: Word[],
@@ -85,4 +91,22 @@ function calcPercentage(
 ): number {
   const count = totalResponse.filter((r) => r.id === targetWord.id).length;
   return Math.round((count / responseCount) * 100);
+}
+
+export function calculateVisitorComparison(
+  ownerSelfWords: Word[],
+  visitorWords: Word[],
+): VisitorComparison {
+  const ownerIds = new Set(ownerSelfWords.map((w) => w.id));
+  const visitorIds = new Set(visitorWords.map((w) => w.id));
+
+  const sharedIds = ownerIds.intersection(visitorIds);
+  const onlyVisitorIds = visitorIds.difference(ownerIds);
+  const onlyOwnerIds = ownerIds.difference(visitorIds);
+
+  const shared = words.filter((w) => sharedIds.has(w.id));
+  const onlyVisitor = words.filter((w) => onlyVisitorIds.has(w.id));
+  const onlyOwner = words.filter((w) => onlyOwnerIds.has(w.id));
+
+  return { shared, onlyVisitor, onlyOwner };
 }

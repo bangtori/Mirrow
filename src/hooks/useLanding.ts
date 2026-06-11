@@ -56,17 +56,16 @@ export function useLanding() {
     setIsCreatingLinks(true);
     try {
       const newLinks = await saveTestOwner(name, selectedWords);
-      saveLocalStorage(newLinks);
+      addMirrowList(newLinks);
       setLinks(newLinks);
     } finally {
       setIsCreatingLinks(false);
     }
   };
 
-  const saveLocalStorage = (link: Links) => {
-    const baseUrl = window.location.origin;
-    const testUrl = `${baseUrl}/response/${link.testId}`;
-    const resultUrl = `${baseUrl}/result/${link.resultId}`;
+  const addMirrowList = (link: Links) => {
+    const testUrl = `/response/${link.testId}`;
+    const resultUrl = `/result/${link.resultId}`;
     const mirrowItem: MirrowItem = {
       testId: link.testId,
       userName: name,

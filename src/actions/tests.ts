@@ -21,7 +21,7 @@ export async function getTestOwnerInfo(id: string): Promise<TestOwnerSummary> {
     throw new Error('사용자를 찾을 수 없습니다.');
   }
 
-  return data as TestOwnerSummary;
+  return data;
 }
 
 export async function saveTestOwner(

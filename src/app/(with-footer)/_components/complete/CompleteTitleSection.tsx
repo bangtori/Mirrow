@@ -1,3 +1,4 @@
+import Image from "next/image"
 type CompleteTitleSectionProps = {
     name: string;
 
@@ -5,7 +6,12 @@ type CompleteTitleSectionProps = {
 export default function CompleteTitleSection({ name }: CompleteTitleSectionProps) {
     return (
         <div className="flex flex-col gap-4 items-center py-10 px-8 border-b border-border">
-            <span className="text-5xl">🪟</span>
+            <Image
+                src="/icons/window.png"
+                alt="창문 아이콘"
+                width={100}
+                height={100}
+            />
             <p className="font-body font-bold text-2xl text-text text-center">
                 "{name}"님의<br /><span className="text-accent">Mirrow</span>가 만들어졌어요.
             </p>
