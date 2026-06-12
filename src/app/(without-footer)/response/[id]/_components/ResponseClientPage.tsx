@@ -21,11 +21,15 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
     const [hasResponded, setHasResponded] = useState<boolean>(false);
 
     useEffect(() => {
-        const mirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
-        const respondedList = getStorage(STORAGE_KEYS.RESPONDED) ?? [];
-        const isOwner = mirrowList.some((item) => item.testId === ownerInfo.id);
-        const hasResponded = respondedList.includes(ownerInfo.id) || isOwner;
-        setHasResponded(hasResponded)
+        const timerId = window.setTimeout(() => {
+            const mirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
+            const respondedList = getStorage(STORAGE_KEYS.RESPONDED) ?? [];
+            const isOwner = mirrowList.some((item) => item.testId === ownerInfo.id);
+            const hasResponded = respondedList.includes(ownerInfo.id) || isOwner;
+            setHasResponded(hasResponded)
+        }, 0);
+
+        return () => window.clearTimeout(timerId);
     }, [ownerInfo.id]);
 
     const handleSelectedWords = (word: Word) => {
@@ -71,7 +75,7 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
     return (
         <div className="flex w-full flex-col">
             <ResponseHeaderSection name={ownerInfo.name} />
-            <h2 className="py-10 px-8 border-b border-border font-black text-xl">"{ownerInfo.name}"{getObjectParticle(ownerInfo.name)} 나타내는 단어 6개를 골라주세요.</h2>
+            <h2 className="py-10 px-8 border-b border-border font-black text-xl">&quot;{ownerInfo.name}&quot;{getObjectParticle(ownerInfo.name)} 나타내는 단어 6개를 골라주세요.</h2>
             <WordSelectSection selectedWords={selectedWords} onSelect={handleSelectedWords} isLoading={isSubmitting} />
             <StickyCounter count={selectedWords.length} onSubmit={handleSubmit} isLoading={isSubmitting} />
         </div>

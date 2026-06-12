@@ -4,7 +4,6 @@ import {
   ResultModel,
   VisitorComparison,
   Word,
-  WordResult,
 } from '@/types';
 
 export function calcJohariResult(
@@ -23,12 +22,13 @@ export function calcJohariResult(
   const responseIdSet = new Set(responses.map((w) => w.id));
   const ALL_WORD_IDS = new Set(words.map((w) => w.id));
 
-  const openIds = selfWordIdSet.intersection(responseIdSet);
-  const hiddenIds = selfWordIdSet.difference(responseIdSet);
-  const blindIds = responseIdSet.difference(selfWordIdSet);
-  const unknownIds = ALL_WORD_IDS.difference(openIds)
-    .difference(hiddenIds)
-    .difference(blindIds);
+  const openIds = intersectSets(selfWordIdSet, responseIdSet);
+  const hiddenIds = differenceSets(selfWordIdSet, responseIdSet);
+  const blindIds = differenceSets(responseIdSet, selfWordIdSet);
+  const unknownIds = differenceSets(
+    differenceSets(differenceSets(ALL_WORD_IDS, openIds), hiddenIds),
+    blindIds,
+  );
 
   const johariResult: JohariResult = {
     open: [],
@@ -100,13 +100,21 @@ export function calculateVisitorComparison(
   const ownerIds = new Set(ownerSelfWords.map((w) => w.id));
   const visitorIds = new Set(visitorWords.map((w) => w.id));
 
-  const sharedIds = ownerIds.intersection(visitorIds);
-  const onlyVisitorIds = visitorIds.difference(ownerIds);
-  const onlyOwnerIds = ownerIds.difference(visitorIds);
+  const sharedIds = intersectSets(ownerIds, visitorIds);
+  const onlyVisitorIds = differenceSets(visitorIds, ownerIds);
+  const onlyOwnerIds = differenceSets(ownerIds, visitorIds);
 
   const shared = words.filter((w) => sharedIds.has(w.id));
   const onlyVisitor = words.filter((w) => onlyVisitorIds.has(w.id));
   const onlyOwner = words.filter((w) => onlyOwnerIds.has(w.id));
 
   return { shared, onlyVisitor, onlyOwner };
+}
+
+function intersectSets<T>(left: Set<T>, right: Set<T>): Set<T> {
+  return new Set([...left].filter((value) => right.has(value)));
+}
+
+function differenceSets<T>(left: Set<T>, right: Set<T>): Set<T> {
+  return new Set([...left].filter((value) => !right.has(value)));
 }

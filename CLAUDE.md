@@ -109,7 +109,8 @@ src/
 - 컴포넌트/훅: 화살표 함수
 - Server Action: `function` 키워드
 - `try-finally` 패턴: 비동기 작업의 로딩 상태 초기화
-- `as unknown as T`: Supabase 쿼리 결과 캐스팅 (supabase.ts 자동 생성 타입 활용 예정)
+- Supabase 자동 생성 타입 기반으로 타입 추론 사용
+- 이중 캐스팅(as unknown as) 사용 금지
 - DTO → Model 변환은 Server Action 내부에서 처리, 클라이언트는 완성된 Model만 수신
 
 ## 에러 핸들링 패턴
@@ -150,6 +151,7 @@ EVENT_NAMES = {
   RESPONSE_COMPLETED, // 응답자 제출 완료
   RESULT_VIEWED, // 결과 페이지 진입
   RESPONSE_LINK_RESHARED, // Owner가 결과 페이지에서 응답 링크 재공유
+  VISITOR_CREATE_CLICKED, // Visitor가 visitor용 결과 페이지에서 Mirrow 생성 버튼 클릭
 };
 ```
 

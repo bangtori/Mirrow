@@ -3,7 +3,7 @@ import { saveTestOwner } from '@/actions/tests';
 import { getStorage, setStorage, STORAGE_KEYS } from '@/lib/storage';
 import { Word, Links, MirrowItem } from '@/types';
 import { EVENT_NAMES } from '@/types/events';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export function useLanding() {
   const [name, setName] = useState<string>('');
@@ -13,10 +13,6 @@ export function useLanding() {
   const [isCreatingLinks, setIsCreatingLinks] = useState<boolean>(false);
   const [nameError, setNameError] = useState<string | null>(null);
 
-  useEffect(() => {
-    setLinks(null);
-  }, [selectedWords]);
-
   const handleName = (value: string) => {
     setName(value);
     if (nameError && value.trim()) {
@@ -25,6 +21,7 @@ export function useLanding() {
   };
 
   const handleSelectedWords = (word: Word) => {
+    setLinks(null);
     setSelectedWords((prev) => {
       if (prev.some((w) => w.id === word.id)) {
         return prev.filter((w) => w.id !== word.id);
@@ -52,6 +49,15 @@ export function useLanding() {
 
   const handleNextStep = () => {
     setCurrentStep((prev) => (prev === 3 ? 3 : ((prev + 1) as 1 | 2 | 3)));
+  };
+
+  const resetLanding = () => {
+    setName('');
+    setSelectedWords([]);
+    setCurrentStep(1);
+    setLinks(null);
+    setIsCreatingLinks(false);
+    setNameError(null);
   };
 
   const createLinks = async () => {
@@ -97,5 +103,6 @@ export function useLanding() {
     handleNextStep,
     handleIntroNext,
     createLinks,
+    resetLanding,
   };
 }

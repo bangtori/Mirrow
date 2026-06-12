@@ -16,10 +16,14 @@ export default function MyPageClientPage() {
     const router = useRouter();
 
     useEffect(() => {
-        const savedMirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
+        const timerId = window.setTimeout(() => {
+            const savedMirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
 
-        setMirrowList(savedMirrowList);
-        setIsStorageLoaded(true);
+            setMirrowList(savedMirrowList);
+            setIsStorageLoaded(true);
+        }, 0);
+
+        return () => window.clearTimeout(timerId);
     }, []);
 
     const handleNewButtonClick = () => {
