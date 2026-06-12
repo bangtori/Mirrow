@@ -1,6 +1,8 @@
+import { trackEvent } from '@/actions/events';
 import { saveTestOwner } from '@/actions/tests';
 import { getStorage, setStorage, STORAGE_KEYS } from '@/lib/storage';
 import { Word, Links, MirrowItem } from '@/types';
+import { EVENT_NAMES } from '@/types/events';
 import { useEffect, useState } from 'react';
 
 export function useLanding() {
@@ -56,6 +58,7 @@ export function useLanding() {
     setIsCreatingLinks(true);
     try {
       const newLinks = await saveTestOwner(name, selectedWords);
+      await trackEvent(EVENT_NAMES.PROFILE_CREATED, newLinks.testId);
       addMirrowList(newLinks);
       setLinks(newLinks);
     } finally {

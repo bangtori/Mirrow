@@ -1,7 +1,9 @@
 'use client'
+import { trackEvent } from "@/actions/events";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import NoticeBox from "@/components/ui/NoticeBox";
+import { EVENT_NAMES, EventName } from "@/types/events";
 import { useState } from "react";
 
 type LinkSectionProps = {
@@ -16,11 +18,14 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
     const [copiedTestLink, setCopiedTestLink] = useState(false);
     const [copiedResultLink, setCopiedResultLink] = useState(false);
 
-    const handleCopy = async (url: string, setCopied: (state: boolean) => void) => {
+    const handleCopy = async (url: string, setCopied: (state: boolean) => void, eventName?: EventName,) => {
         try {
             await navigator.clipboard.writeText(url);
-            setCopied(true);
+            if (eventName) {
+                await trackEvent(eventName, testId);
+            }
 
+            setCopied(true);
             setTimeout(() => {
                 setCopied(false);
             }, 1500);
@@ -38,7 +43,7 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
                     <p className="font-body text-muted font-normal text-sm">친구들에게 공유하면 단어를 골라줄 수 있어요</p>
                     <p className="font-body text-muted font-normal text-sm">{testUrl}</p>
                 </div>
-                <Button variant="primary" size="lg" onClick={() => handleCopy(testUrl, setCopiedTestLink)}>{copiedTestLink ? "복사 완료" : "응답 링크 복사"}</Button>
+                <Button variant="primary" size="lg" onClick={() => handleCopy(testUrl, setCopiedTestLink, EVENT_NAMES.RESPONSE_LINK_COPIED)}>{copiedTestLink ? "복사 완료" : "응답 링크 복사"}</Button>
             </Card>
 
             <Card className="flex flex-col gap-4 w-full">

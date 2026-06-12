@@ -2,6 +2,8 @@
 import { createClient } from '@/lib/supabase/server';
 import { TestResult, TestResultDTO, TestResultSelect } from '@/types';
 import { mapWordIdToWord } from '@/utils/word';
+import { trackEvent } from './events';
+import { EVENT_NAMES } from '@/types/events';
 
 export async function getResult(token: string): Promise<TestResult> {
   const supabase = await createClient();
@@ -22,7 +24,9 @@ export async function getResult(token: string): Promise<TestResult> {
 
   try {
     const dtoData = mapTestResultSelectToDto(data);
-    return mapDtoToModel(dtoData);
+    const result = mapDtoToModel(dtoData);
+    await trackEvent(EVENT_NAMES.RESULT_VIEWED, data.id);
+    return result;
   } catch (error) {
     console.error('❌ 변환 에러:', error);
     throw new Error('결과 정보를 변환하는데 실패했습니다.');

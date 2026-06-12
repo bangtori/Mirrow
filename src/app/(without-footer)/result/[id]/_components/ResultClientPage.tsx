@@ -5,6 +5,8 @@ import ResultBodySection from "./ResultBodySection";
 import ResultDescriptionSection from "./ResultDescriptionSection";
 import Button from "@/components/ui/Button";
 import { useRouter } from 'next/navigation';
+import { trackEvent } from "@/actions/events";
+import { EVENT_NAMES } from "@/types/events";
 
 type ResultClientPageProps = {
     data: ResultModel;
@@ -15,8 +17,15 @@ type ResultClientPageProps = {
 export default function ResultClientPage({ data, ownerName, testId }: ResultClientPageProps) {
     const router = useRouter()
     const handleShareButton = async () => {
-        const url = `${window.location.origin}/response/${testId}`;
-        await navigator.clipboard.writeText(url);
+        try {
+            const url = `${window.location.origin}/response/${testId}`;
+            await navigator.clipboard.writeText(url);
+
+            await trackEvent(EVENT_NAMES.RESPONSE_LINK_RESHARED, testId);
+        } catch (error) {
+            console.error(error)
+            alert("링크 복사에 실패했습니다.")
+        }
 
         // TODO: - 토스트 메시지로 복사 완료 안내 메시지 띄우기
     };

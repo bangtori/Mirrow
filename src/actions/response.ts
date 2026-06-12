@@ -8,6 +8,8 @@ import {
 } from '@/types/response';
 import { createClient } from '@/lib/supabase/server';
 import { mapWordIdToWord } from '@/utils/word';
+import { trackEvent } from './events';
+import { EVENT_NAMES } from '@/types/events';
 
 export async function saveResponse(
   response: UserResponse,
@@ -37,6 +39,8 @@ export async function saveResponse(
     console.error('❌ DB 저장 실패:', error);
     throw new Error('응답 저장 중 오류가 발생했습니다.');
   }
+
+  await trackEvent(EVENT_NAMES.RESPONSE_COMPLETED, response.test_id);
 
   return data;
 }
