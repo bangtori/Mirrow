@@ -15,7 +15,7 @@ export default function CompleteTitleSection({ name }: CompleteTitleSectionProps
             <p className="font-body font-bold text-2xl text-text text-center">
                 &quot;{name}&quot;님의<br /><span className="text-accent">Mirrow</span>가 만들어졌어요.
             </p>
-            <p className="font-body text-muted font-normal text-base">
+            <p className="font-body text-subtext font-normal text-base">
                 친구들에게 응답 링크를 공유해보세요.
             </p>
         </div>

@@ -19,7 +19,7 @@ export default function EmptyView() {
                 />
                 <h3 className="text-lg font-bold">아직 만든 Mirrow가 없어요</h3>
             </div>
-            <p className="text-sm text-muted text-center">
+            <p className="text-sm text-subtext text-center">
                 Mirrow를 만들면 여기서 <br />
                 언제든 다시 확인할 수 있어요
             </p>

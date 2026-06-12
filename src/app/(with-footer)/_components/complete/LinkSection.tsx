@@ -49,7 +49,7 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
             <Card className="flex flex-col gap-4 w-full">
                 <div className="flex flex-col gap-1">
                     <p className="font-body font-bold text-accent">응답 링크 - 친구들에게 공유</p>
-                    <p className="font-body text-muted font-normal text-sm">친구들에게 공유하면 단어를 골라줄 수 있어요</p>
+                    <p className="font-body text-subtext font-normal text-sm">친구들에게 공유하면 단어를 골라줄 수 있어요</p>
                     <p className="font-body text-muted font-normal text-sm">{testUrl}</p>
                 </div>
                 <Button variant="primary" size="lg" onClick={() => handleCopy(testUrl, setCopiedTestLink, EVENT_NAMES.RESPONSE_LINK_COPIED)}>{copiedTestLink ? "복사 완료" : "응답 링크 복사"}</Button>
@@ -58,7 +58,7 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
             <Card className="flex flex-col gap-4 w-full">
                 <div className="flex flex-col gap-1">
                     <p className="font-body font-bold text-accent">결과 링크 - 본인 보관용</p>
-                    <p className="font-body text-muted font-normal text-sm">친구들의 응답이 쌓이면 여기서 확인할 수 있어요</p>
+                    <p className="font-body text-subtext font-normal text-sm">친구들의 응답이 쌓이면 여기서 확인할 수 있어요</p>
                     <p className="font-body text-muted font-normal text-sm">{resultUrl}</p>
                 </div>
                 <Button variant="primary" appearance="outline" size="lg" onClick={() => handleCopy(resultUrl, setCopiedResultLink)}>{copiedResultLink ? "복사 완료" : "결과 링크 복사"}</Button>

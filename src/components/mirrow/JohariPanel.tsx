@@ -28,7 +28,7 @@ export default function JohariPanel({ type, words, locked = false }: JohariPanel
             <p className="text-sm font-bold">{typeDescription[type]}</p>
             <div className="flex flex-wrap gap-2 mt-2">
                 {locked ? (
-                    <p className="mt-2 text-sm text-muted">응답자가 5명 이상일 때 이 영역에 단어가 표시됩니다.</p>
+                    <p className="mt-2 text-sm text-subtext">응답자가 5명 이상일 때 이 영역에 단어가 표시됩니다.</p>
                 ) : (
                     words.map((word, index) => (
                         <ResultChip key={index} text={word.word} percent={word.percent} />

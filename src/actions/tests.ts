@@ -43,9 +43,15 @@ export async function saveTestOwner(
   name: string,
   self_words: Word[],
 ): Promise<Links> {
+  const trimmedName = name.trim();
+
   // Validation
-  if (!name.trim() || self_words.length === 0) {
+  if (!trimmedName || self_words.length === 0) {
     throw new Error('이름과 단어 선택은 필수입니다.');
+  }
+
+  if (trimmedName.length > 10) {
+    throw new Error('이름은 10자 이하로 입력해주세요.');
   }
 
   if (self_words.length !== 6) {
@@ -58,7 +64,7 @@ export async function saveTestOwner(
   const { data, error } = await supabase
     .from('tests')
     .insert({
-      name: name.trim(),
+      name: trimmedName,
       self_words: wordIds,
     })
     .select('id, result_token')

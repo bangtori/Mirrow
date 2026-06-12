@@ -7,6 +7,7 @@ type TextFieldProps = {
   value: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  maxLength?: number;
   className?: string;
 };
 
@@ -17,6 +18,7 @@ export default function TextField({
   value,
   onChange,
   onKeyDown,
+  maxLength,
   className,
 }: TextFieldProps) {
   const inputId = useId();
@@ -32,6 +34,7 @@ export default function TextField({
         value={value}
         onChange={onChange}
         onKeyDown={onKeyDown}
+        maxLength={maxLength}
         placeholder={placeholder}
         className={`w-full bg-card text-text border rounded-xl placeholder-muted px-6 py-4 focus:outline-none ${error ? errorStyle : primaryStyle} ${className ? className : ''}`}
       />
