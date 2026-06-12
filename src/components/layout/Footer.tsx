@@ -1,6 +1,9 @@
 import Link from "next/link";
 import Button from "../ui/Button";
 import Image from "next/image";
+
+const appVersion = process.env.NEXT_PUBLIC_APP_VERSION;
+
 export default function Footer() {
     return (
         <footer className="text-muted mt-auto pb-8">
@@ -15,7 +18,7 @@ export default function Footer() {
                             height={50}
                         />
                         <h2 className="font-bold font-display text-2xl text-text">Mirrow</h2>
-                        <p>v1.0.0</p>
+                        {appVersion && <p>v{appVersion}</p>}
                         <p>타인의 시선으로 발견하는 나</p>
                     </div>
                     <Button>
