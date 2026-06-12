@@ -50,7 +50,7 @@ export default function Button({
 
   return (
     <button
-      className={`inline-flex items-center justify-center font-body font-bold rounded-lg active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed ${colorStyles[variant][appearance]} ${sizeClass} ${className ?? ''}`}
+      className={`inline-flex items-center justify-center font-body font-bold rounded-lg active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] ${colorStyles[variant][appearance]} ${sizeClass} ${className ?? ''}`}
       {...props}
     >
       {icon && iconPosition === 'left' && (

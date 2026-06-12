@@ -3,7 +3,7 @@ import ErrorPage from "@/components/layout/ErrorPage";
 import { useRouter } from 'next/navigation';
 
 export default function Error({ error }: { error: Error, reset: () => void }) {
-    const router = useRouter();
+    const router = useRouter()
     return (
         <ErrorPage
             message={error.message}

@@ -6,6 +6,8 @@ import DescriptionSection from "./DescriptionSection";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import { useRouter } from 'next/navigation';
+import { trackEvent } from "@/actions/events";
+import { EVENT_NAMES } from "@/types/events";
 
 type VisitorViewClientPageProps = {
     name: string;
@@ -15,6 +17,11 @@ type VisitorViewClientPageProps = {
 
 export default function VisitorViewClientPage({ name, visitorComparison }: VisitorViewClientPageProps) {
     const router = useRouter();
+
+    const handleCreateMirrowButtonClick = async () => {
+        await trackEvent(EVENT_NAMES.VISITOR_CREATE_CLICKED);
+        router.push("/");
+    };
     return (
         <div className="flex flex-col">
             <section className="flex flex-col items-center gap-2 py-10 px-8 border-b border-border">
@@ -39,7 +46,7 @@ export default function VisitorViewClientPage({ name, visitorComparison }: Visit
                 </Card>
             </section>
             <section className="py-10 px-8">
-                <Button className="w-full" size="lg" onClick={() => router.push("/")}>나도 Mirrow 만들기</Button>
+                <Button className="w-full" size="lg" onClick={handleCreateMirrowButtonClick}>나도 Mirrow 만들기</Button>
             </section>
 
         </div>

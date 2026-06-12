@@ -2,6 +2,8 @@
 import { createClient } from '@/lib/supabase/server';
 import { TestResult, TestResultDTO, TestResultSelect } from '@/types';
 import { mapWordIdToWord } from '@/utils/word';
+import { trackEvent } from './events';
+import { EVENT_NAMES } from '@/types/events';
 
 export async function getResult(token: string): Promise<TestResult> {
   const supabase = await createClient();
@@ -20,13 +22,22 @@ export async function getResult(token: string): Promise<TestResult> {
     throw new Error('비활성화된 링크입니다.');
   }
 
+  let result: TestResult;
   try {
     const dtoData = mapTestResultSelectToDto(data);
-    return mapDtoToModel(dtoData);
+    result = mapDtoToModel(dtoData);
   } catch (error) {
     console.error('❌ 변환 에러:', error);
     throw new Error('결과 정보를 변환하는데 실패했습니다.');
   }
+
+  try {
+    await trackEvent(EVENT_NAMES.RESULT_VIEWED, data.id);
+  } catch (e) {
+    console.error('❌ 이벤트 로그 실패:', e);
+  }
+
+  return result;
 }
 
 function mapTestResultSelectToDto(selectData: TestResultSelect): TestResultDTO {
