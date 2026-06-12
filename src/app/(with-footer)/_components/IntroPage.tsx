@@ -41,7 +41,7 @@ export default function IntroPage({ currentStep, name, onChange, onNext, error }
             {isStorageLoaded && <CreatedMirrowSection mirrowList={mirrowList} />}
             <DescriptionSection />
             <div className="px-6">
-                <Input placeholder='홍길동' title='이름을 입력해주세요.' error={error} value={name} onChange={(e) => onChange(e.target.value)} />
+                <Input placeholder='홍길동' title='이름을 입력해주세요.' error={error} value={name} onChange={(e) => onChange(e.target.value)} maxLength={10} />
             </div>
             <div className="px-6 mt-8">
                 <Button variant="primary" size="lg" className="w-full" onClick={onNext}>다음: 단어 선택하기 </Button>

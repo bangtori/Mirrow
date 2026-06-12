@@ -32,7 +32,7 @@ export default function VisitorViewClientPage({ name, visitorComparison }: Visit
                     height={50}
                 />
                 <h1 className="font-black text-2xl">응답이 반영됐어요</h1>
-                <p className="text-muted text-sm">{name}님의 Mirrow에 당신의 선택이 담겼어요.</p>
+                <p className="text-subtext text-sm">{name}님의 Mirrow에 당신의 선택이 담겼어요.</p>
             </section>
             <section className="py-10 px-8 flex flex-col gap-4">
                 <SelectedWordCard notSharedWords={visitorComparison.onlyOwner} sharedWords={visitorComparison.shared} name={name} />

@@ -25,11 +25,11 @@ export default function StickyCounter({ count, onSubmit, isLoading }: StickyCoun
                         {count}
                     </div>
                     <div className="flex flex-col gap-1">
-                        <p className="text-muted text-sm">
+                        <p className="text-subtext text-sm">
                             <span className="text-accent font-bold">{count} / {MAX_COUNT} </span>
                             <span>선택됨</span>
                         </p>
-                        <p className="text-muted text-sm">{is_MAX ? '제출할 준비가 됐어요.' : `${MAX_COUNT - count}개 더 선택하면 돼요.`}</p>
+                        <p className="text-subtext text-sm">{is_MAX ? '제출할 준비가 됐어요.' : `${MAX_COUNT - count}개 더 선택하면 돼요.`}</p>
                     </div>
                 </div>
                 {/* submit */}
