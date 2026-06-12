@@ -16,6 +16,7 @@ type ResultClientPageProps = {
 
 export default function ResultClientPage({ data, ownerName, testId }: ResultClientPageProps) {
     const router = useRouter()
+
     const handleShareButton = async () => {
         try {
             const url = `${window.location.origin}/response/${testId}`;

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Button from "../ui/Button";
 
 type ErrorPageProps = {
@@ -9,8 +10,9 @@ type ErrorPageProps = {
 export default function ErrorPage({ message, buttonText, onButtonClick }: ErrorPageProps) {
     return (
         <div className="flex flex-col items-center justify-center min-h-72 gap-4">
-            {/* TODO: - 나중에 Mirrow 전용 아이콘 만들어서 넣기 */}
-            <p className="font-body font-black text-xl">{message}</p>
+            <Image src="/icons/error.png" alt="에러" height={100} width={100} style={{ width: "auto", height: 100 }} />
+            <h1 className="font-body font-black text-xl">문제가 발생했습니다.</h1>
+            <p className="font-body mb-5 text-accent">{message}</p>
             {buttonText && onButtonClick && (
                 <Button onClick={onButtonClick}>{buttonText}</Button>
             )}
