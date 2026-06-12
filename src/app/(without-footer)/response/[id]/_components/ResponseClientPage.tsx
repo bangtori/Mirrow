@@ -9,6 +9,7 @@ import StickyCounter from "@/components/mirrow/StickyCounter";
 import { getStorage, setStorage, STORAGE_KEYS } from "@/lib/storage";
 import { saveResponse } from "@/actions/response";
 import { getObjectParticle } from "@/utils/korean";
+import Button from "@/components/ui/Button";
 
 type ResponseClientPageProps = {
     ownerInfo: TestOwnerSummary
@@ -68,6 +69,9 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
             <div className="flex w-full flex-col">
                 <ResponseHeaderSection name={ownerInfo.name} />
                 <h2 className="py-10 px-8 font-black text-xl">이미 응답한 Mirrow에요.</h2>
+                <div className="px-8">
+                    <Button size="lg" className="w-full" onClick={() => router.push("/")}>처음으로 돌아가기</Button>
+                </div>
             </div>
         )
     }
