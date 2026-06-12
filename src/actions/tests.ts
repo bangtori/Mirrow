@@ -24,6 +24,21 @@ export async function getTestOwnerInfo(id: string): Promise<TestOwnerSummary> {
   return data;
 }
 
+export async function getOwnerNameByResultToken(resultToken: string): Promise<string> {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('tests')
+    .select('name')
+    .eq('result_token', resultToken)
+    .single();
+
+  if (error || !data) {
+    throw new Error('사용자를 찾을 수 없습니다.');
+  }
+
+  return data.name;
+}
+
 export async function saveTestOwner(
   name: string,
   self_words: Word[],
