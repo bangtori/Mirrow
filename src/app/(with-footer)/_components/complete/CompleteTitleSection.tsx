@@ -13,7 +13,7 @@ export default function CompleteTitleSection({ name }: CompleteTitleSectionProps
                 height={100}
             />
             <p className="font-body font-bold text-2xl text-text text-center">
-                "{name}"님의<br /><span className="text-accent">Mirrow</span>가 만들어졌어요.
+                &quot;{name}&quot;님의<br /><span className="text-accent">Mirrow</span>가 만들어졌어요.
             </p>
             <p className="font-body text-muted font-normal text-base">
                 친구들에게 응답 링크를 공유해보세요.

@@ -14,7 +14,11 @@ type LinkSectionProps = {
 export default function LinkSection({ testId, resultId }: LinkSectionProps) {
     const [origin, setOrigin] = useState('');
     useEffect(() => {
-        setOrigin(window.location.origin);
+        const timerId = window.setTimeout(() => {
+            setOrigin(window.location.origin);
+        }, 0);
+
+        return () => window.clearTimeout(timerId);
     }, []);
 
     const testUrl = `${origin}/response/${testId}`;

@@ -22,12 +22,16 @@ export default function IntroPage({ currentStep, name, onChange, onNext, error }
     const [isStorageLoaded, setIsStorageLoaded] = useState(false);
 
     useEffect(() => {
-        const savedMirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
-        const sliceList = savedMirrowList
-            .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-            .slice(0, 2)
-        setMirrowList(sliceList);
-        setIsStorageLoaded(true);
+        const timerId = window.setTimeout(() => {
+            const savedMirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
+            const sliceList = savedMirrowList
+                .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                .slice(0, 2)
+            setMirrowList(sliceList);
+            setIsStorageLoaded(true);
+        }, 0);
+
+        return () => window.clearTimeout(timerId);
     }, []);
 
     return (
