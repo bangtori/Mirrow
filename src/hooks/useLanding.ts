@@ -58,7 +58,11 @@ export function useLanding() {
     setIsCreatingLinks(true);
     try {
       const newLinks = await saveTestOwner(name, selectedWords);
-      await trackEvent(EVENT_NAMES.PROFILE_CREATED, newLinks.testId);
+      try {
+        await trackEvent(EVENT_NAMES.PROFILE_CREATED, newLinks.testId);
+      } catch (e) {
+        console.error('❌ 이벤트 로그 실패:', e);
+      }
       addMirrowList(newLinks);
       setLinks(newLinks);
     } finally {

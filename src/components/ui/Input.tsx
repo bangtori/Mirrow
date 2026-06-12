@@ -1,4 +1,4 @@
-import type { ChangeEventHandler, KeyboardEventHandler } from 'react';
+import { useId, type ChangeEventHandler, type KeyboardEventHandler } from 'react';
 
 type TextFieldProps = {
   placeholder?: string;
@@ -19,14 +19,15 @@ export default function TextField({
   onKeyDown,
   className,
 }: TextFieldProps) {
-
+  const inputId = useId();
   const errorStyle = 'border-mr-red focus:border-mr-red';
   const primaryStyle = 'border-border focus:border-accent';
 
   return (
     <div className='flex flex-col gap-1'>
-      {title && <label className='pl-3 font-body font-bold text-text text-sm'>{title}</label>}
+      {title && <label htmlFor={inputId} className='pl-3 font-body font-bold text-text text-sm'>{title}</label>}
       <input
+        id={inputId}
         type="text"
         value={value}
         onChange={onChange}

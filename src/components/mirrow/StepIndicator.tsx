@@ -19,7 +19,7 @@ export default function StepIndicator({ currentStep }: StepIndicatorProps) {
                         <div className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold ${currentStep > index ? "bg-accent text-white" : "border border-border text-muted bg-card2"}`}>
                             {index + 1}
                         </div>
-                        <p>{step}</p>
+                        <p className="text-xs text-center">{step}</p>
                     </div>
                     {index < MAX_STEP - 1 && <div className="flex-1 mx-2 mt-3.5 h-[0.5px] bg-border" />}
                 </Fragment>

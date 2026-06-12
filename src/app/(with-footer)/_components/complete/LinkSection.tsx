@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import NoticeBox from "@/components/ui/NoticeBox";
 import { EVENT_NAMES, EventName } from "@/types/events";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type LinkSectionProps = {
     testId: string;
@@ -12,8 +12,13 @@ type LinkSectionProps = {
 }
 
 export default function LinkSection({ testId, resultId }: LinkSectionProps) {
-    const testUrl = `${window.location.origin}/response/${testId}`
-    const resultUrl = `${window.location.origin}/result/${resultId}`
+    const [origin, setOrigin] = useState('');
+    useEffect(() => {
+        setOrigin(window.location.origin);
+    }, []);
+
+    const testUrl = `${origin}/response/${testId}`;
+    const resultUrl = `${origin}/result/${resultId}`;
 
     const [copiedTestLink, setCopiedTestLink] = useState(false);
     const [copiedResultLink, setCopiedResultLink] = useState(false);

@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
             title,
             description: "타인의 시선으로 발견하는 나 — 조하리 창 기반 자기 인식 도구",
             url,
+            images: [{ url: "/images/og-image.png", width: 1200, height: 630 }],
         },
     };
 }

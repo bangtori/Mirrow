@@ -13,7 +13,10 @@ export default function StickyCounter({ count, onSubmit, isLoading }: StickyCoun
     const is_MAX = count >= MAX_COUNT;
 
     return (
-        <div className={`sticky bottom-0 inset-x-0 w-full py-4 px-5 bg-white border-t border-border rounded-b-3xl`}>
+        <div
+            className="sticky bottom-0 inset-x-0 w-full pt-4 px-5 bg-white border-t border-border rounded-b-3xl"
+            style={{ paddingBottom: 'max(1rem, env(safe-area-inset-bottom))' }}
+        >
             {/* bg-white: 스티키 카운터는 페이지 배경(--bg #fffbf5)과 구분을 위해 의도적으로 흰색 사용 */}
             <div className="flex items-center justify-between">
                 {/* 카운트 정보 */}
