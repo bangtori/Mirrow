@@ -10,6 +10,8 @@ import { getStorage, setStorage, STORAGE_KEYS } from "@/lib/storage";
 import { saveResponse } from "@/actions/response";
 import { getObjectParticle } from "@/utils/korean";
 import Button from "@/components/ui/Button";
+import { trackEvent } from "@/actions/events";
+import { EVENT_NAMES } from "@/types/events";
 
 type ResponseClientPageProps = {
     ownerInfo: TestOwnerSummary
@@ -20,6 +22,10 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
     const [selectedWords, setSelectedWords] = useState<Word[]>([]);
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [hasResponded, setHasResponded] = useState<boolean>(false);
+
+    useEffect(() => {
+        void trackEvent(EVENT_NAMES.RESPONSE_PAGE_VIEWED, ownerInfo.id);
+    }, [ownerInfo.id]);
 
     useEffect(() => {
         const timerId = window.setTimeout(() => {

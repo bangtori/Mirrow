@@ -1,12 +1,19 @@
 'use client'
 
+import { trackEvent } from "@/actions/events";
 import { useLanding } from "@/hooks/useLanding"
+import { EVENT_NAMES } from "@/types/events";
+import { useEffect } from "react";
 import IntroPage from "./IntroPage";
 import WordSelectPage from "./WordSelectPage";
 import CompletePage from "./CompletePage";
 
 export default function LandingClientPage() {
     const { name, handleName, handleSelectedWords, selectedWords, currentStep, createLinks, isCreatingLinks, handleNextStep, links, handleIntroNext, nameError, resetLanding } = useLanding();
+
+    useEffect(() => {
+        void trackEvent(EVENT_NAMES.LANDING_VIEWED);
+    }, []);
 
     const stepContent = {
         1: <IntroPage currentStep={currentStep} name={name} onChange={handleName} onNext={handleIntroNext} error={nameError} />,
