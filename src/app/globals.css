@@ -4,13 +4,14 @@
   /* 브랜드 */
   --color-accent: #7c6bb5;
   --color-accent-hover: #6a58a3;
+  --color-accent-text: #6a58a3;
   --color-accent-dim: rgba(124, 107, 181, 0.12);
   --color-accent-border: rgba(124, 107, 181, 0.28);
 
   /* 텍스트 */
   --color-text: #3d2f6b;
-  --color-muted: #9b8fcc;
-  --color-subtext: #5B4D91;
+  --color-subtext: #5a5370;
+  --color-muted: #6f6880;
 
   /* 배경·경계 */
   --color-bg: #fffbf5;
@@ -36,6 +37,25 @@
   --font-body: var(--font-noto-sans-kr);
   --font-mono: var(--font-jetbrains-mono);
   --font-display: var(--font-gowun-batang);
+
+  /* Type Scale */
+  --text-display-lg: 36px;
+  --text-display-md: 30px;
+  --text-heading-lg: 20px;
+  --text-heading-md: 18px;
+  --text-body-lg: 14px;
+  --text-body-md: 13px;
+  --text-caption-lg: 11px;
+  --text-caption-md: 9px;
+
+  /* Radius */
+  --radius-chip: 8px;
+  --radius-input: 12px;
+  --radius-card: 14px;
+  --radius-pill: 20px;
+
+  /* Shadow */
+  --shadow-panel: 0 10px 30px rgb(61 47 107 / 0.08);
 }
 
 body {
