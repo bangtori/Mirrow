@@ -44,6 +44,7 @@ export function useLanding() {
 
     setName(trimmedName);
     setNameError(null);
+    void trackEvent(EVENT_NAMES.PROFILE_CREATE_STARTED);
     handleNextStep();
   };
 
