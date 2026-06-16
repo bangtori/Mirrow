@@ -9,7 +9,7 @@ type SelectedWordCardProps = {
 export default function SelectedWordCard({ notSharedWords, sharedWords, name }: SelectedWordCardProps) {
     const selectedWords = [...sharedWords, ...notSharedWords];
     return (
-        <Card variant={name ? 'default' : 'border'}>
+        <Card variant="default">
             <p className="text-xs font-bold text-muted mb-2">
                 {name ? `${name}님이 선택한 단어` : "당신이 선택한 단어"}
             </p>

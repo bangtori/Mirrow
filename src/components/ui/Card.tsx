@@ -1,10 +1,15 @@
 
-type Variant = 'default' | 'accent' | 'accent-dim' | 'border';
+type Variant = 'default' | 'accent' | 'accent-dim';
 const colorStyles = {
     default: 'bg-card border-border',
     accent: 'bg-accent border-accent text-white',
-    'accent-dim': 'bg-accent-dim border-border',
-    border: 'bg-white border-border',
+    'accent-dim': 'bg-accent-dim border-accent-border',
+}
+
+const paddingStyles: Record<Variant, string> = {
+    default: 'p-4',
+    accent: 'px-[22px] py-5',
+    'accent-dim': 'p-4',
 }
 
 type CardProps = {
@@ -15,7 +20,7 @@ type CardProps = {
 export default function Card({ children, className, variant = 'default' }: CardProps) {
 
     return (
-        <div className={`flex flex-col gap-1 rounded-lg p-4 border ${className ?? ''} ${colorStyles[variant]}`}>
+        <div className={`flex flex-col gap-1 rounded-card border ${paddingStyles[variant]} ${className ?? ''} ${colorStyles[variant]}`}>
             {children}
         </div>
     )

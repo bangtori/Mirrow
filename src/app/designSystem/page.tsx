@@ -143,10 +143,6 @@ export default function DesignSystemPage() {
                         <p className="font-bold">accent-dim</p>
                         <p className="text-body-md text-subtext">연한 강조 카드입니다.</p>
                     </Card>
-                    <Card variant="border">
-                        <p className="font-bold">border</p>
-                        <p className="text-body-md text-subtext">테두리 카드입니다.</p>
-                    </Card>
                 </div>
             </Section>
 

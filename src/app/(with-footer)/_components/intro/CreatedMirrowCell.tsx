@@ -10,7 +10,7 @@ export default function CreatedMirrowCell({ mirrow }: { mirrow: MirrowItem }) {
     };
     return (
         <li className=''>
-            <Card variant='border'>
+            <Card variant='default'>
                 <div className='flex flex-col gap-2 md:flex-row md:items-center md:justify-between'>
                     <div className='flex flex-col'>
                         <h3 className='font-black text-lg'>{mirrow.userName}</h3>
