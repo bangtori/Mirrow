@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, Plus } from "lucide-react";
+import { Copy, MessageCircle, Plus } from "lucide-react";
 import { useState } from "react";
 
 import Badge from "@/components/ui/Badge";
@@ -109,9 +109,10 @@ export default function DesignSystemPage() {
             <Section title="NoticeBox">
                 <div className="flex flex-col gap-3">
                     <NoticeBox variant="info">안내 메시지입니다.</NoticeBox>
-                    <NoticeBox variant="success">성공 메시지입니다.</NoticeBox>
                     <NoticeBox variant="warn">주의가 필요한 메시지입니다.</NoticeBox>
-                    <NoticeBox variant="danger">오류 메시지입니다.</NoticeBox>
+                    <NoticeBox variant="info" icon={<MessageCircle size={16} />}>
+                        아이콘 커스텀이 가능한 안내 메시지입니다.
+                    </NoticeBox>
                 </div>
             </Section>
 

@@ -21,11 +21,8 @@
 
   /* System */
   --color-mr-red: #dc2626;
-  --color-mr-red-hover: #b91c1c;
-  --color-mr-yellow: #d97706;
-  --color-mr-yellow-hover: #b45309;
+  --color-mr-yellow: #8a5a14;
   --color-mr-green: #059669;
-  --color-mr-green-hover: #047857;
   --color-mr-red-dim: rgba(220, 38, 38, 0.08);
   --color-mr-red-border: rgba(220, 38, 38, 0.2);
   --color-mr-yellow-dim: rgba(217, 119, 6, 0.08);
