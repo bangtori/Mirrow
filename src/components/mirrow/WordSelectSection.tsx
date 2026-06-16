@@ -17,7 +17,7 @@ export default function WordSelectSection({ selectedWords, onSelect, isLoading }
                     word={word}
                     isSelected={selectedWords.some((w) => w.id === word.id)}
                     onClick={() => onSelect(word)}
-                    disabled={selectedWords.length >= 6 && !selectedWords.some((w) => w.id === word.id) || isLoading}
+                    disabled={isLoading}
                 />
             ))}
         </section>
