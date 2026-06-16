@@ -9,6 +9,7 @@ import Card from "@/components/ui/Card";
 import Input from "@/components/ui/Input";
 import NoticeBox from "@/components/ui/NoticeBox";
 import ResultChip from "@/components/ui/ResultChip";
+import SearchInput from "@/components/ui/SearchInput";
 import TrayChip from "@/components/ui/TrayChip";
 import WordChip from "@/components/ui/WordChip";
 import { words } from "@/data/words";
@@ -30,6 +31,7 @@ function Section({
 
 export default function DesignSystemPage() {
     const [inputValue, setInputValue] = useState("홍길동");
+    const [searchValue, setSearchValue] = useState("");
     const [selectedWordIds, setSelectedWordIds] = useState<number[]>([words[0].id]);
     const [trayLabels, setTrayLabels] = useState(["차분한", "믿음직한", "따뜻한"]);
 
@@ -125,6 +127,10 @@ export default function DesignSystemPage() {
                         value=""
                         placeholder="값을 입력해주세요"
                         error="필수 입력 항목입니다."
+                    />
+                    <SearchInput
+                        value={searchValue}
+                        onChange={(event) => setSearchValue(event.target.value)}
                     />
                 </div>
             </Section>
