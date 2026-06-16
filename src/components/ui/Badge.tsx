@@ -1,4 +1,4 @@
-export type Variant = 'accent' | 'muted' | 'success' | 'warn' | 'danger';
+export type Variant = 'accent';
 
 type BadgeProps = {
   variant?: Variant;
@@ -7,11 +7,7 @@ type BadgeProps = {
 };
 
 const colorStyles: Record<Variant, string> = {
-  accent: 'bg-accent-dim text-accent border-accent-border',
-  muted: 'bg-card2 text-muted border-border',
-  success: 'bg-mr-green-dim text-mr-green border-mr-green-border',
-  warn: 'bg-mr-yellow-dim text-mr-yellow border-mr-yellow-border',
-  danger: 'bg-mr-red-dim text-mr-red border-mr-red-border',
+  accent: 'bg-card2 text-accent-text border-border',
 };
 
 export default function Badge({
@@ -21,7 +17,7 @@ export default function Badge({
 }: BadgeProps) {
   return (
     <span
-      className={`inline-flex items-center justify-center border rounded-full px-2.5 py-1 font-mono text-xs ${colorStyles[variant]} ${className ?? ''}`}
+      className={`inline-flex items-center justify-center border rounded-pill px-2.5 py-0.5 font-mono text-caption-lg ${colorStyles[variant]} ${className ?? ''}`}
     >
       {children}
     </span>

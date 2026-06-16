@@ -99,10 +99,6 @@ export default function DesignSystemPage() {
             <Section title="Badge">
                 <div className="flex flex-wrap gap-2">
                     <Badge variant="accent">accent</Badge>
-                    <Badge variant="muted">muted</Badge>
-                    <Badge variant="success">success</Badge>
-                    <Badge variant="warn">warn</Badge>
-                    <Badge variant="danger">danger</Badge>
                 </div>
             </Section>
 
