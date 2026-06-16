@@ -52,7 +52,7 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
                     <p className="font-body text-subtext font-normal text-sm">친구들에게 공유하면 단어를 골라줄 수 있어요</p>
                     <p className="font-body text-muted font-normal text-sm">{testUrl}</p>
                 </div>
-                <Button variant="primary" size="lg" onClick={() => handleCopy(testUrl, setCopiedTestLink, EVENT_NAMES.RESPONSE_LINK_COPIED)}>{copiedTestLink ? "복사 완료" : "응답 링크 복사"}</Button>
+                <Button variant="primary" onClick={() => handleCopy(testUrl, setCopiedTestLink, EVENT_NAMES.RESPONSE_LINK_COPIED)}>{copiedTestLink ? "복사 완료" : "응답 링크 복사"}</Button>
             </Card>
 
             <Card className="flex flex-col gap-4 w-full">
@@ -61,7 +61,7 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
                     <p className="font-body text-subtext font-normal text-sm">친구들의 응답이 쌓이면 여기서 확인할 수 있어요</p>
                     <p className="font-body text-muted font-normal text-sm">{resultUrl}</p>
                 </div>
-                <Button variant="primary" appearance="outline" size="lg" onClick={() => handleCopy(resultUrl, setCopiedResultLink)}>{copiedResultLink ? "복사 완료" : "결과 링크 복사"}</Button>
+                <Button variant="secondary" onClick={() => handleCopy(resultUrl, setCopiedResultLink)}>{copiedResultLink ? "복사 완료" : "결과 링크 복사"}</Button>
             </Card>
 
             <NoticeBox variant="warn">결과 링크는 현재 기기에 자동 저장됩니다. 다만 브라우저 데이터를 삭제하거나 다른 기기에서 접속하면 사라질 수 있어요. 결과를 오래 보관하고 싶다면 링크를 복사해 저장해주세요.</NoticeBox>

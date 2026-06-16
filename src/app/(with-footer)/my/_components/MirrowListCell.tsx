@@ -36,7 +36,7 @@ export default function MirrowListCell({ mirrow }: MirrowListCellProps) {
             </div>
             <div className="flex gap-3">
                 <Button onClick={() => handleResultClick(mirrow.resultUrl)}>결과 보기</Button>
-                <Button appearance="outline" onClick={() => handleResponseCopyClick(mirrow.responseUrl)} icon={<Copy />}>{copied ? "복사 완료" : "응답 링크 복사"}</Button>
+                <Button variant="secondary" onClick={() => handleResponseCopyClick(mirrow.responseUrl)} icon={<Copy />}>{copied ? "복사 완료" : "응답 링크 복사"}</Button>
             </div>
         </li>
     )

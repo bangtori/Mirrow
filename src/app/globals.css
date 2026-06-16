@@ -39,20 +39,20 @@
   --font-display: var(--font-gowun-batang);
 
   /* Type Scale */
-  --text-display-lg: 36px;
-  --text-display-md: 30px;
-  --text-heading-lg: 20px;
-  --text-heading-md: 18px;
-  --text-body-lg: 14px;
-  --text-body-md: 13px;
-  --text-caption-lg: 11px;
-  --text-caption-md: 9px;
+  --text-display-lg: 2.25rem;
+  --text-display-md: 1.875rem;
+  --text-heading-lg: 1.25rem;
+  --text-heading-md: 1.125rem;
+  --text-body-lg: 0.875rem;
+  --text-body-md: 0.8125rem;
+  --text-caption-lg: 0.6875rem;
+  --text-caption-md: 0.5625rem;
 
   /* Radius */
-  --radius-chip: 8px;
-  --radius-input: 12px;
-  --radius-card: 14px;
-  --radius-pill: 20px;
+  --radius-chip: 0.5rem;
+  --radius-input: 0.75rem;
+  --radius-card: 0.875rem;
+  --radius-pill: 1.25rem;
 
   /* Shadow */
   --shadow-panel: 0 10px 30px rgb(61 47 107 / 0.08);

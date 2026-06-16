@@ -1,58 +1,62 @@
+import { Loader2 } from 'lucide-react';
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type Variant = 'primary' | 'danger';
-type Appearance = 'filled' | 'outline' | 'ghost';
-type Size = 'sm' | 'md' | 'lg';
+type Variant = 'primary' | 'secondary' | 'ghost';
+type Size = 'default' | 'sm';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: Variant;
-  appearance?: Appearance;
   size?: Size;
   icon?: ReactNode;
   iconPosition?: 'left' | 'right';
+  isLoading?: boolean;
 }
 
-const colorStyles: Record<Variant, Record<Appearance, string>> = {
-  primary: {
-    filled: 'bg-accent text-white hover:bg-accent-hover',
-    outline: 'border border-accent text-accent hover:bg-accent-dim',
-    ghost: 'text-accent hover:bg-accent-dim',
-  },
-  danger: {
-    filled: 'bg-mr-red text-white hover:bg-mr-red-hover',
-    outline: 'border border-mr-red text-mr-red hover:bg-mr-red-dim',
-    ghost: 'text-mr-red hover:bg-mr-red-dim',
-  },
+const variantStyles: Record<Variant, string> = {
+  primary:
+    'bg-accent text-white enabled:hover:bg-accent-hover enabled:hover:-translate-y-px enabled:active:translate-y-0 focus-visible:ring-2 focus-visible:ring-accent-border focus-visible:outline-none',
+  secondary:
+    'bg-transparent text-accent-text border-[1.5px] border-accent enabled:hover:bg-accent/8 enabled:hover:-translate-y-px enabled:active:translate-y-0 focus-visible:ring-2 focus-visible:ring-accent-border focus-visible:outline-none',
+  ghost:
+    'bg-transparent text-accent-text enabled:hover:bg-accent/10 enabled:hover:-translate-y-px enabled:active:translate-y-0 focus-visible:ring-2 focus-visible:ring-accent-border focus-visible:outline-none',
 };
 
 const sizeStyles: Record<
   Size,
-  { text: string; iconOnly: string; gap: string }
+  { text: string; iconOnly: string; gap: string; loadingIcon: number; radius: string }
 > = {
-  sm: { text: 'text-xs px-3 py-2', iconOnly: 'p-1.5', gap: 'gap-1' },
-  md: { text: 'text-sm px-5 py-3', iconOnly: 'p-2', gap: 'gap-2' },
-  lg: { text: 'text-base px-7 py-4', iconOnly: 'p-3', gap: 'gap-2' },
+  default: { text: 'text-body-lg p-3.5', iconOnly: 'p-3.5', gap: 'gap-2', loadingIcon: 16, radius: 'rounded-input' },
+  sm: { text: 'text-body-md px-4 py-2', iconOnly: 'p-2', gap: 'gap-1', loadingIcon: 14, radius: 'rounded-input' },
 };
 
 export default function Button({
   variant = 'primary',
-  appearance = 'filled',
-  size = 'md',
+  size = 'default',
   icon,
   iconPosition = 'left',
+  isLoading = false,
   className = '',
+  disabled,
   children,
   ...props
 }: ButtonProps) {
-  const isIconOnly = !!icon && !children;
-  const { text, iconOnly, gap } = sizeStyles[size];
-  const sizeClass = isIconOnly ? iconOnly : `${text} ${icon ? gap : ''}`;
+  const isIconOnly = !!icon && !children && !isLoading;
+  const { text, iconOnly, gap, loadingIcon, radius } = sizeStyles[size];
+  const hasLeadingIcon = isLoading || (icon && iconPosition === 'left');
+  const hasTrailingIcon = icon && iconPosition === 'right';
+  const ghostTextSizeClass = size === 'default' ? 'text-body-lg' : 'text-body-md';
+  const textSizeClass = variant === 'ghost' ? `${ghostTextSizeClass} px-3.5 py-3` : text;
+  const sizeClass = isIconOnly ? iconOnly : `${textSizeClass} ${hasLeadingIcon || hasTrailingIcon ? gap : ''}`;
 
   return (
     <button
-      className={`inline-flex items-center justify-center font-body font-bold rounded-lg active:scale-95 transition-all disabled:opacity-50 disabled:cursor-not-allowed min-h-[44px] ${colorStyles[variant][appearance]} ${sizeClass} ${className ?? ''}`}
       {...props}
+      disabled={disabled || isLoading}
+      className={`inline-flex items-center justify-center font-body font-bold ${radius} transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:translate-y-0 min-h-[44px] ${variantStyles[variant]} ${sizeClass} ${className ?? ''}`}
     >
+      {isLoading && (
+        <Loader2 size={loadingIcon} className="shrink-0 animate-spin" />
+      )}
       {icon && iconPosition === 'left' && (
         <span className="shrink-0">{icon}</span>
       )}

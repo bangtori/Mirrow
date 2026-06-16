@@ -25,7 +25,7 @@ export default function CreatedMirrowSection({ mirrowList }: { mirrowList: Mirro
                     </ul>
                 )}
             </section>
-            <Button className="w-full" appearance="ghost" iconPosition="right" icon={<ChevronRight />} onClick={handleMyMirrowClick}>My Mirrow</Button>
+            <Button className="w-full" variant="ghost" iconPosition="right" icon={<ChevronRight />} onClick={handleMyMirrowClick}>My Mirrow</Button>
         </section>
     )
 }

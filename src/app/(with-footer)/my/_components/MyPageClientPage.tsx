@@ -58,7 +58,7 @@ export default function MyPageClientPage() {
             </section>
 
             <section className="w-full flex justify-center py-10 px-8">
-                <Button size="lg" className="w-full" onClick={handleNewButtonClick}>
+                <Button className="w-full" onClick={handleNewButtonClick}>
                     새 Mirrow 만들기
                 </Button>
             </section>
