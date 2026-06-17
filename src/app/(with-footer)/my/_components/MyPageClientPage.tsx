@@ -1,13 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import { getStorage, STORAGE_KEYS } from '@/lib/storage';
 import { MirrowItem } from '@/types';
 import MirrowListCell from './MirrowListCell';
 import EmptyView from './EmptyView';
 import { useRouter } from 'next/navigation';
+import MyPageHeader from './MyPageHeader';
 
 export default function MyPageClientPage() {
     const [mirrowList, setMirrowList] = useState<MirrowItem[]>([]);
@@ -32,36 +32,35 @@ export default function MyPageClientPage() {
 
     if (!isStorageLoaded) {
         return (
-            <div className="px-8 py-10">
-                <p className="text-sm text-muted">Mirrow를 불러오는 중이에요.</p>
+            <div className="min-h-[70svh] px-6 py-10">
+                <p className="text-body-md md:text-body-lg text-muted">Mirrow를 불러오는 중이에요.</p>
             </div>
         );
     }
 
-    if (mirrowList.length === 0) {
-        return <EmptyView />;
-    }
-
     return (
-        <div className="flex flex-col">
-            <section className="flex justify-between px-8 py-10 border-b border-border">
-                <h1 className="font-black text-xl">내 Mirrow</h1>
-                <Badge variant="accent">{mirrowList.length}개</Badge>
-            </section>
+        <div className="flex min-h-[70svh] flex-col px-6">
+            <MyPageHeader count={mirrowList.length} />
 
-            <section>
-                <ul>
-                    {mirrowList.map((mirrow) => (
-                        <MirrowListCell key={mirrow.testId} mirrow={mirrow} />
-                    ))}
-                </ul>
-            </section>
+            {mirrowList.length === 0 ? (
+                <EmptyView />
+            ) : (
+                <>
+                    <section>
+                        <ul>
+                            {mirrowList.map((mirrow) => (
+                                <MirrowListCell key={mirrow.testId} mirrow={mirrow} />
+                            ))}
+                        </ul>
+                    </section>
 
-            <section className="w-full flex justify-center py-10 px-8">
-                <Button className="w-full" onClick={handleNewButtonClick}>
-                    새 Mirrow 만들기
-                </Button>
-            </section>
+                    <section className="mt-auto w-full flex justify-center py-10">
+                        <Button className="w-full" onClick={handleNewButtonClick}>
+                            새 Mirrow 만들기
+                        </Button>
+                    </section>
+                </>
+            )}
         </div>
     );
 }
