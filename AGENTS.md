@@ -80,6 +80,8 @@
 
 # 4. Git / Release 규칙
 
+## Git 메시지 작성 규칙
+
 커밋 메시지는 Conventional Commit 형식을 사용한다.
 
 형식:
@@ -105,14 +107,41 @@ feat: 계산 기능 추가
 - 더하기 기능 추가
 - 빼기 기능 추가
 
-릴리즈 작업 시:
+## 릴리즈 작업
 
-1. package.json 버전 업데이트
-2. Footer 버전 업데이트
-3. CHANGELOG 반영
-4. Git Tag 생성
+### PR 생성 전
 
-CHANGELOG에는 실제 배포된 내용만 기록한다.
+릴리즈 준비 요청을 받은 경우 먼저 아래 항목 완료 여부를 확인한다.
+
+- 관련 이슈 완료
+- 마일스톤 상태 확인
+- 로컬 검증 완료
+- Preview 검증 완료
+
+확인 이후에만 다음 작업을 수행한다.
+
+- package.json 버전 업데이트
+- Footer 버전 업데이트
+- CHANGELOG 업데이트
+- 릴리즈 준비 커밋 생성
+
+---
+
+### PR 머지 이후
+
+사용자가 수행:
+
+- Production 배포 확인
+- 운영 환경 검증
+- 주요 사용자 흐름 테스트
+
+AI가 수행 가능:
+
+- Git Tag 생성
+- Git Tag Push
+- main → dev 동기화
+
+Git Tag는 운영 배포가 완료된 main 커밋에 생성한다.
 
 ---
 
