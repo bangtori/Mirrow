@@ -9,7 +9,7 @@ export default function EmptyView() {
         router.push("/")
     };
     return (
-        <div className="flex flex-col gap-3 items-center py-10 px-8">
+        <div className="flex flex-1 flex-col gap-3 items-center justify-center py-10">
             <div className="flex flex-col gap-1 items-center">
                 <Image
                     src="/icons/window.png"
@@ -17,9 +17,9 @@ export default function EmptyView() {
                     width={100}
                     height={100}
                 />
-                <h3 className="text-lg font-bold">아직 만든 Mirrow가 없어요</h3>
+                <h3 className="text-heading-md md:text-heading-lg font-bold">아직 만든 Mirrow가 없어요</h3>
             </div>
-            <p className="text-sm text-subtext text-center">
+            <p className="text-body-md md:text-body-lg text-subtext text-center">
                 Mirrow를 만들면 여기서 <br />
                 언제든 다시 확인할 수 있어요
             </p>

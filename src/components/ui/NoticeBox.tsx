@@ -1,42 +1,45 @@
-import { CircleAlert, CircleCheck, CircleX, Info } from "lucide-react";
+import { CircleAlert, Info } from "lucide-react";
+import type { ReactNode } from "react";
 
-type Variant = 'info' | 'warn' | 'danger' | 'success';
+type Variant = 'info' | 'warn';
 
 type NoticeBoxProps = {
   variant?: Variant;
+  icon?: ReactNode;
   children: React.ReactNode;
   className?: string;
 };
 
 const colorStyles: Record<Variant, string> = {
-  info: 'bg-accent-dim text-accent border-accent-border',
+  info: 'bg-accent-dim text-subtext border-accent-border',
   warn: 'bg-mr-yellow-dim text-mr-yellow border-mr-yellow-border',
-  danger: 'bg-mr-red-dim text-mr-red border-mr-red-border',
-  success: 'bg-mr-green-dim text-mr-green border-mr-green-border',
+};
+
+const iconStyles: Record<Variant, string> = {
+  info: 'text-accent-text',
+  warn: 'text-mr-yellow',
 };
 
 export default function NoticeBox({
   variant = 'info',
+  icon,
   children,
   className,
 }: NoticeBoxProps) {
-  const icon = (() => {
+  const defaultIcon = (() => {
     switch (variant) {
       case 'info':
-        return <Info size={18} className="text-accent" />
+        return <Info size={16} />
       case 'warn':
-        return <CircleAlert size={18} className="text-mr-yellow" />
-      case 'danger':
-        return <CircleX size={18} className="text-mr-red" />
-      case 'success':
-        return <CircleCheck size={18} className="text-mr-green" />
+        return <CircleAlert size={16} />
     }
   })()
+
   return (
     <div
-      className={`flex items-center gap-2 border rounded-lg px-4 py-3 font-mono text-sm ${colorStyles[variant]} ${className ?? ''}`}
+      className={`flex items-center gap-2 border rounded-input px-3.5 py-3 text-caption-lg ${colorStyles[variant]} ${className ?? ''}`}
     >
-      <span className="shrink-0">{icon}</span>
+      <span className={`shrink-0 ${iconStyles[variant]}`}>{icon ?? defaultIcon}</span>
       <span className="min-w-0 break-all">{children}</span>
     </div>
   );

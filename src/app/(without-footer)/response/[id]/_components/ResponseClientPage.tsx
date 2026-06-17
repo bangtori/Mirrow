@@ -76,7 +76,7 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
                 <ResponseHeaderSection name={ownerInfo.name} />
                 <h2 className="py-10 px-8 font-black text-xl">이미 응답한 Mirrow에요.</h2>
                 <div className="px-8 pb-10">
-                    <Button size="lg" className="w-full" onClick={() => router.push("/")}>처음으로 돌아가기</Button>
+                    <Button className="w-full" onClick={() => router.push("/")}>처음으로 돌아가기</Button>
                 </div>
             </div>
         )

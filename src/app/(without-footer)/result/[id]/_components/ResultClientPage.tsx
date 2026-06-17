@@ -36,8 +36,8 @@ export default function ResultClientPage({ data, ownerName, testId }: ResultClie
             <ResultBodySection resultModel={data} responseCount={data.responses_count} />
             <ResultDescriptionSection />
             <div className="py-10 px-8 w-full flex flex-col gap-2">
-                <Button appearance='outline' size='lg' className="w-full" onClick={handleShareButton}>응답 링크 다시 공유하기</Button>
-                <Button size='lg' className="w-full" onClick={() => router.push("/")}>처음으로 돌아가기</Button>
+                <Button variant='secondary' className="w-full" onClick={handleShareButton}>응답 링크 다시 공유하기</Button>
+                <Button className="w-full" onClick={() => router.push("/")}>처음으로 돌아가기</Button>
             </div>
         </section>
     )

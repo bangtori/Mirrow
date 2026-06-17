@@ -20,7 +20,7 @@ export default function CompletePage({ currentStep, name, testId, resultId, onRe
             <CompleteTitleSection name={name} />
             <LinkSection testId={testId} resultId={resultId} />
             <div className="px-8">
-                <Button size='lg' className="w-full" onClick={onReset}>처음으로 돌아가기</Button>
+                <Button className="w-full" onClick={onReset}>처음으로 돌아가기</Button>
             </div>
         </div>
     )

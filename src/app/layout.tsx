@@ -33,7 +33,7 @@ export default function RootLayout({
       lang="ko"
       className={`${notoSansKr.variable} ${jetBrainsMono.variable} ${gowunBatang.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-card px-4 lg:px-0">
+      <body className="min-h-full flex flex-col bg-card md:px-4 lg:px-0">
         {children}
       </body>
     </html >

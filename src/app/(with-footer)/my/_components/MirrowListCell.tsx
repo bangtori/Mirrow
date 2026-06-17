@@ -29,14 +29,14 @@ export default function MirrowListCell({ mirrow }: MirrowListCellProps) {
 
     };
     return (
-        <li className="flex flex-col gap-2 py-4 px-8 border-b border-border">
+        <li className="flex flex-col gap-2 py-4 border-b border-border">
             <div className="flex flex-col">
-                <h3 className="font-black text-lg">{mirrow.userName}</h3>
-                <p className="text-xs text-muted">{new Date(mirrow.createdAt).toLocaleDateString('ko-KR')} 생성</p>
+                <h3 className="font-black text-body-lg md:text-heading-md">{mirrow.userName}</h3>
+                <p className="text-caption-md md:text-caption-lg text-muted">{new Date(mirrow.createdAt).toLocaleDateString('ko-KR')} 생성</p>
             </div>
             <div className="flex gap-3">
                 <Button onClick={() => handleResultClick(mirrow.resultUrl)}>결과 보기</Button>
-                <Button appearance="outline" onClick={() => handleResponseCopyClick(mirrow.responseUrl)} icon={<Copy />}>{copied ? "복사 완료" : "응답 링크 복사"}</Button>
+                <Button variant="secondary" onClick={() => handleResponseCopyClick(mirrow.responseUrl)} icon={<Copy />}>{copied ? "복사 완료" : "응답 링크 복사"}</Button>
             </div>
         </li>
     )

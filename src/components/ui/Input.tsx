@@ -23,7 +23,7 @@ export default function TextField({
 }: TextFieldProps) {
   const inputId = useId();
   const errorStyle = 'border-mr-red focus:border-mr-red';
-  const primaryStyle = 'border-border focus:border-accent';
+  const primaryStyle = 'border-border focus:border-accent focus:bg-white focus:ring-3 focus:ring-accent/18';
 
   return (
     <div className='flex flex-col gap-1'>
@@ -36,7 +36,7 @@ export default function TextField({
         onKeyDown={onKeyDown}
         maxLength={maxLength}
         placeholder={placeholder}
-        className={`w-full bg-card text-text border rounded-xl placeholder-muted px-6 py-4 focus:outline-none ${error ? errorStyle : primaryStyle} ${className ? className : ''}`}
+        className={`w-full bg-card text-body-lg text-text border rounded-input placeholder-muted px-4 py-[13px] focus:outline-none ${error ? errorStyle : primaryStyle} ${className ? className : ''}`}
       />
       {error && <p className='pl-3 font-body text-mr-red text-sm'>{error}</p>}
     </div>

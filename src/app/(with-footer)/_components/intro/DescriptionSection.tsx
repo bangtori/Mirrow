@@ -9,23 +9,19 @@ const panelDescriptions = [
 
 export default function DescriptionSection() {
     return (
-        <section className="flex flex-col gap-6 py-8 px-6">
-            <div className='flex flex-col gap-2'>
-                <h2 className='text-lg font-bold text-text'>Mirrow 란?</h2>
-                <p className='text-subtext'>친구들이 나를 어떤 단어로 표현하는지 알 수 있어요. 내가 고른 단어와 비교해 나를 새롭게 발견해 보세요.</p>
-            </div>
+        <section className="flex flex-col gap-6 py-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {panelDescriptions.map((panelDes) => (
                     <Card key={panelDes.type}>
-                        <p className="text-xs font-bold font-mono text-muted">{panelDes.type}</p>
-                        <h3 className="text-sm font-bold text-text">{panelDes.title}</h3>
-                        <p className="text-sm font-light text-subtext">{panelDes.description}</p>
+                        <p className="text-caption-md md:text-caption-lg font-bold font-mono text-muted">{panelDes.type}</p>
+                        <h3 className="text-body-md md:text-body-lg font-bold text-text">{panelDes.title}</h3>
+                        <p className="text-body-md md:text-body-lg font-light text-subtext">{panelDes.description}</p>
                     </Card>
                 ))}
             </div>
 
             <Card variant="accent-dim">
-                <ul className='flex flex-col gap-2 text-sm list-disc pl-5 marker:text-accent text-accent'>
+                <ul className='flex flex-col gap-2 text-body-md md:text-body-lg list-disc pl-5 marker:text-accent'>
                     <li>전문 심리 도구가 아니에요 — 참고용으로만 활용해주세요</li>
                     <li>나를 잘 아는 친한 친구들에게 공유하면 더 의미있어요</li>
                     <li>친한 친구 3~8명 정도의 응답을 받을 때 가장 의미있는 결과를 얻을 수 있어요</li>

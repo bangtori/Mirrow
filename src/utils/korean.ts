@@ -1,10 +1,12 @@
 export function getObjectParticle(word: string): '을' | '를' {
-  if (!word) return '를';
+  const normalizedWord = word.trim();
 
-  const lastChar = word[word.length - 1];
+  if (!normalizedWord) return '를';
+
+  const lastChar = normalizedWord[normalizedWord.length - 1];
   const code = lastChar.charCodeAt(0);
 
-  // 한글 음절 범위: 가(0xAC00) ~ 힣(0xD7A3)
+  // 한글 음절 범위: 가 ~ 힣
   if (code < 0xac00 || code > 0xd7a3) {
     return '를';
   }

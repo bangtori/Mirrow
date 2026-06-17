@@ -46,7 +46,7 @@ export default function VisitorViewClientPage({ name, visitorComparison }: Visit
                 </Card>
             </section>
             <section className="py-10 px-8">
-                <Button className="w-full" size="lg" onClick={handleCreateMirrowButtonClick}>나도 Mirrow 만들기</Button>
+                <Button className="w-full" onClick={handleCreateMirrowButtonClick}>나도 Mirrow 만들기</Button>
             </section>
 
         </div>

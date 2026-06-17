@@ -1,8 +1,18 @@
-# Changelog
+# 변경 이력
+
+## v1.1.0 - 2026-06-17
+
+- 디자인 토큰을 개편하고 모바일 레이아웃을 풀블리드 구조로 조정했습니다.
+- Button, Badge, Card, NoticeBox, WordChip 등 공용 UI 컴포넌트에 디자인 시스템 변경 사항을 반영했습니다.
+- 랜딩 페이지 헤더, 최근 Mirrow 섹션, 소개 입력 흐름, 하단 스티키 버튼을 개편했습니다.
+- 마이페이지 목록 레이아웃과 빈 상태 화면을 정리했습니다.
+- 에러 페이지 복구 동작과 메시지 줄바꿈을 개선했습니다.
+- SearchInput 컴포넌트와 디자인 시스템 확인 라우트를 추가했습니다.
+- 조사 유틸 함수의 공백 처리 개선과 테스트를 추가했습니다.
 
 ## v1.0.2 - 2026-06-15
 
-- Added event logging for landing page visits with `LANDING_VIEWED`.
-- Added event logging when profile creation starts after entering a name and moving to word selection with `PROFILE_CREATE_STARTED`.
-- Added event logging for response link page visits with `RESPONSE_PAGE_VIEWED`.
-- Kept source/ref metadata tracking out of this release scope; it is deferred to v1.0.3 or later.
+- 랜딩 페이지 방문 시 `LANDING_VIEWED` 이벤트 로그를 기록하도록 추가했습니다.
+- 이름 입력 후 단어 선택 단계로 이동하며 Mirrow 생성을 시작할 때 `PROFILE_CREATE_STARTED` 이벤트 로그를 기록하도록 추가했습니다.
+- 응답 링크 페이지 방문 시 `RESPONSE_PAGE_VIEWED` 이벤트 로그를 기록하도록 추가했습니다.
+- source/ref 메타데이터 추적은 이번 배포 범위에서 제외하고 v1.0.3 이후로 미뤘습니다.
