@@ -26,7 +26,7 @@ export default function IntroPage({ currentStep, name, onChange, onNext, error }
             const savedMirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
             const sliceList = savedMirrowList
                 .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-                .slice(0, 2)
+                .slice(0, 1)
             setMirrowList(sliceList);
             setIsStorageLoaded(true);
         }, 0);
@@ -38,7 +38,7 @@ export default function IntroPage({ currentStep, name, onChange, onNext, error }
         <div className='flex w-full flex-col pb-8'>
             <IntroHeader />
             <IndicatorSection currentStep={currentStep} />
-            {isStorageLoaded && <CreatedMirrowSection mirrowList={mirrowList} />}
+            {isStorageLoaded && mirrowList.length > 0 && <CreatedMirrowSection mirrowList={mirrowList} />}
             <DescriptionSection />
             <div className="px-6">
                 <Input placeholder='홍길동' title='이름을 입력해주세요.' error={error} value={name} onChange={(e) => onChange(e.target.value)} maxLength={10} />

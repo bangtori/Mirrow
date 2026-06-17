@@ -3,7 +3,7 @@ type Variant = 'default' | 'accent' | 'accent-dim';
 const colorStyles = {
     default: 'bg-card border-border',
     accent: 'bg-accent border-accent text-white',
-    'accent-dim': 'bg-accent-dim border-accent-border',
+    'accent-dim': 'bg-accent-dim border-accent-border text-subtext',
 }
 
 const paddingStyles: Record<Variant, string> = {
