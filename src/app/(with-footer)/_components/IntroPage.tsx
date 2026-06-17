@@ -5,6 +5,7 @@ import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import IndicatorSection from './IndicatorSection';
 import CreatedMirrowSection from './intro/CreatedMirrowSection';
+import BottomStickyLayout from '@/components/layout/BottomStickyLayout';
 import { MirrowItem } from '@/types';
 import { getStorage, STORAGE_KEYS } from '@/lib/storage';
 import { useEffect, useState } from 'react';
@@ -35,17 +36,17 @@ export default function IntroPage({ currentStep, name, onChange, onNext, error }
     }, []);
 
     return (
-        <div className='flex w-full flex-col pb-8'>
+        <div className='flex w-full flex-col'>
             <IntroHeader />
             <IndicatorSection currentStep={currentStep} />
-            {isStorageLoaded && mirrowList.length > 0 && <CreatedMirrowSection mirrowList={mirrowList} />}
-            <DescriptionSection />
             <div className="px-6">
+                {isStorageLoaded && mirrowList.length > 0 && <CreatedMirrowSection mirrowList={mirrowList} />}
+                <DescriptionSection />
                 <Input placeholder='홍길동' title='이름을 입력해주세요.' error={error} value={name} onChange={(e) => onChange(e.target.value)} maxLength={10} />
             </div>
-            <div className="px-6 mt-8">
+            <BottomStickyLayout className="mt-8">
                 <Button variant="primary" className="w-full" onClick={onNext}>다음: 단어 선택하기 </Button>
-            </div>
+            </BottomStickyLayout>
         </div>
     )
 }

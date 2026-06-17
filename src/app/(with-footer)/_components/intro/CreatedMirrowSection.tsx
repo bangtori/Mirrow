@@ -7,7 +7,7 @@ export default function CreatedMirrowSection({ mirrowList }: { mirrowList: Mirro
     if (!mirrow) return null;
 
     return (
-        <section className="px-6 pt-5">
+        <section className="pt-5">
             <CreatedMirrowCell mirrow={mirrow} />
         </section>
     )
