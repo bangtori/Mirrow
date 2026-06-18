@@ -3,9 +3,7 @@
 import { Word } from "@/types";
 import IndicatorSection from "./IndicatorSection";
 import TitleSection from "./wordSelect/TitleSection";
-
-import WordSelectSection from "../../../components/mirrow/WordSelectSection";
-import StickyCounter from "@/components/mirrow/StickyCounter";
+import WordSelectBody from "@/components/mirrow/WordSelectBody";
 
 type WordSelectPageProps = {
     words: Word[];
@@ -33,9 +31,17 @@ export default function WordSelectPage({ words, currentStep, selectedWords, isCr
     return (
         <div className='flex w-full flex-col'>
             <IndicatorSection currentStep={currentStep} />
-            <TitleSection name={name} />
-            <WordSelectSection words={words} selectedWords={selectedWords} onSelect={onSelect} isLoading={isCreatingLinks} />
-            <StickyCounter count={selectedWords.length} onSubmit={handleNext} isLoading={isCreatingLinks} />
+            <div className="flex w-full flex-col px-6">
+                <TitleSection name={name} />
+                <WordSelectBody
+                    words={words}
+                    selectedWords={selectedWords}
+                    onSelect={onSelect}
+                    onSubmit={handleNext}
+                    isLoading={isCreatingLinks}
+                    loadingLabel="링크 생성 중..."
+                />
+            </div>
         </div>
     )
 }

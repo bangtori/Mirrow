@@ -10,7 +10,7 @@ interface WordSelectSectionProps {
 
 export default function WordSelectSection({ words, selectedWords, onSelect, isLoading }: WordSelectSectionProps) {
     return (
-        <section className="flex flex-wrap gap-x-2 gap-y-3 py-8 px-6">
+        <section className="flex flex-wrap gap-x-2 gap-y-3 py-5 md:justify-center md:py-8">
             {words.map((word) => (
                 <WordChip
                     key={word.id}
