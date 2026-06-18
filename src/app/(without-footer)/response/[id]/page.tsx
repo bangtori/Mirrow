@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTestOwnerInfo } from "@/actions/tests";
 import ResponseClientPage from "./_components/ResponseClientPage";
+import { selectableWords } from "@/data/words";
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -25,6 +26,6 @@ export default async function ResponsePage({ params }: Props) {
     const testOwnerInfo = await getTestOwnerInfo(id);
 
     return (
-        <ResponseClientPage ownerInfo={testOwnerInfo} />
+        <ResponseClientPage ownerInfo={testOwnerInfo} words={selectableWords} />
     );
 }

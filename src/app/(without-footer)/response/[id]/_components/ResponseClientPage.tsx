@@ -14,10 +14,11 @@ import { trackEvent } from "@/actions/events";
 import { EVENT_NAMES } from "@/types/events";
 
 type ResponseClientPageProps = {
-    ownerInfo: TestOwnerSummary
+    ownerInfo: TestOwnerSummary;
+    words: Word[];
 }
 
-export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProps) {
+export default function ResponseClientPage({ ownerInfo, words }: ResponseClientPageProps) {
     const router = useRouter()
     const [selectedWords, setSelectedWords] = useState<Word[]>([]);
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -86,7 +87,7 @@ export default function ResponseClientPage({ ownerInfo }: ResponseClientPageProp
         <div className="flex w-full flex-col">
             <ResponseHeaderSection name={ownerInfo.name} />
             <h2 className="py-10 px-8 border-b border-border font-black text-xl">&quot;{ownerInfo.name}&quot;{getObjectParticle(ownerInfo.name)} 나타내는 단어 6개를 골라주세요.</h2>
-            <WordSelectSection selectedWords={selectedWords} onSelect={handleSelectedWords} isLoading={isSubmitting} />
+            <WordSelectSection words={words} selectedWords={selectedWords} onSelect={handleSelectedWords} isLoading={isSubmitting} />
             <StickyCounter count={selectedWords.length} onSubmit={handleSubmit} isLoading={isSubmitting} />
         </div>
     )

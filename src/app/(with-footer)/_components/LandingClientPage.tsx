@@ -7,8 +7,13 @@ import { useEffect } from "react";
 import IntroPage from "./IntroPage";
 import WordSelectPage from "./WordSelectPage";
 import CompletePage from "./CompletePage";
+import { Word } from "@/types";
 
-export default function LandingClientPage() {
+type LandingClientPageProps = {
+    words: Word[];
+}
+
+export default function LandingClientPage({ words }: LandingClientPageProps) {
     const { name, handleName, handleSelectedWords, selectedWords, currentStep, createLinks, isCreatingLinks, handleNextStep, links, handleIntroNext, nameError, resetLanding } = useLanding();
 
     useEffect(() => {
@@ -17,7 +22,7 @@ export default function LandingClientPage() {
 
     const stepContent = {
         1: <IntroPage currentStep={currentStep} name={name} onChange={handleName} onNext={handleIntroNext} error={nameError} />,
-        2: <WordSelectPage currentStep={currentStep} selectedWords={selectedWords} onSelect={handleSelectedWords} onNext={handleNextStep} createLink={createLinks} isCreatingLinks={isCreatingLinks} name={name} />,
+        2: <WordSelectPage words={words} currentStep={currentStep} selectedWords={selectedWords} onSelect={handleSelectedWords} onNext={handleNextStep} createLink={createLinks} isCreatingLinks={isCreatingLinks} name={name} />,
         3: links ? <CompletePage currentStep={currentStep} name={name} testId={links.testId} resultId={links.resultId} onReset={resetLanding} /> : null
     }[currentStep]
 
