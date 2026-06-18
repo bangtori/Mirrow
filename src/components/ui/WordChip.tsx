@@ -28,7 +28,7 @@ export default function WordChip({
                 <p className={`font-mono text-caption-lg ${isSelected ? 'text-white/80' : 'text-muted'}`}>
                     {word.english}
                 </p>
-                <p className={`text-body-md font-bold ${isSelected ? 'text-white' : 'text-text'}`}>
+                <p className={`text-body-md md:text-body-lg font-bold ${isSelected ? 'text-white' : 'text-text'}`}>
                     {word.korean}
                 </p>
             </div>

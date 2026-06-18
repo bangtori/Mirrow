@@ -6,7 +6,7 @@ interface TrayChipProps {
 
 export default function TrayChip({ label, onRemove, className }: TrayChipProps) {
     return (
-        <div className={`inline-flex items-center gap-1.5 bg-accent text-white rounded-pill py-1.5 pr-2 pl-3 text-body-md font-bold ${className ?? ''}`}>
+        <div className={`inline-flex items-center gap-1.5 bg-accent text-white rounded-pill py-1.5 pr-2 pl-3 text-body-md md:text-body-lg font-bold ${className ?? ''}`}>
             <span>{label}</span>
             <span
                 onClick={onRemove}
