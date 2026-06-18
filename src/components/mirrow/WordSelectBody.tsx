@@ -51,9 +51,9 @@ export default function WordSelectBody({
                 onSelect={onSelect}
                 isLoading={isLoading}
             />
-            <div className="flex pb-10 md:justify-end">
+            <div className="flex pb-10">
                 <Button
-                    className="w-full md:w-auto md:min-w-[160px]"
+                    className="w-full"
                     disabled={!canSubmit || isLoading}
                     onClick={onSubmit}
                 >
