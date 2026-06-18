@@ -1,14 +1,14 @@
 import WordChip from "@/components/ui/WordChip";
-import { words } from "@/data/words";
 import { Word } from "@/types";
 
 interface WordSelectSectionProps {
+    words: Word[];
     selectedWords: Word[];
     onSelect: (word: Word) => void;
     isLoading: boolean;
 }
 
-export default function WordSelectSection({ selectedWords, onSelect, isLoading }: WordSelectSectionProps) {
+export default function WordSelectSection({ words, selectedWords, onSelect, isLoading }: WordSelectSectionProps) {
     return (
         <section className="flex flex-wrap gap-x-2 gap-y-3 py-8 px-6">
             {words.map((word) => (

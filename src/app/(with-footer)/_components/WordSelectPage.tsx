@@ -8,6 +8,7 @@ import WordSelectSection from "../../../components/mirrow/WordSelectSection";
 import StickyCounter from "@/components/mirrow/StickyCounter";
 
 type WordSelectPageProps = {
+    words: Word[];
     currentStep: number;
     selectedWords: Word[];
     isCreatingLinks: boolean;
@@ -17,7 +18,7 @@ type WordSelectPageProps = {
     name: string;
 }
 
-export default function WordSelectPage({ currentStep, selectedWords, isCreatingLinks, onSelect, onNext, createLink, name }: WordSelectPageProps) {
+export default function WordSelectPage({ words, currentStep, selectedWords, isCreatingLinks, onSelect, onNext, createLink, name }: WordSelectPageProps) {
 
     const handleNext = async () => {
         try {
@@ -33,7 +34,7 @@ export default function WordSelectPage({ currentStep, selectedWords, isCreatingL
         <div className='flex w-full flex-col'>
             <IndicatorSection currentStep={currentStep} />
             <TitleSection name={name} />
-            <WordSelectSection selectedWords={selectedWords} onSelect={onSelect} isLoading={isCreatingLinks} />
+            <WordSelectSection words={words} selectedWords={selectedWords} onSelect={onSelect} isLoading={isCreatingLinks} />
             <StickyCounter count={selectedWords.length} onSubmit={handleNext} isLoading={isCreatingLinks} />
         </div>
     )
