@@ -37,7 +37,7 @@ export default function NoticeBox({
 
   return (
     <div
-      className={`flex items-center gap-2 border rounded-input px-3.5 py-3 text-caption-lg ${colorStyles[variant]} ${className ?? ''}`}
+      className={`flex items-center gap-2 border rounded-input px-3.5 py-3 text-body-md md:text-body-lg ${colorStyles[variant]} ${className ?? ''}`}
     >
       <span className={`shrink-0 ${iconStyles[variant]}`}>{icon ?? defaultIcon}</span>
       <span className="min-w-0 break-all">{children}</span>

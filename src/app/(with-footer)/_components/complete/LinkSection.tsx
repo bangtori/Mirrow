@@ -1,10 +1,9 @@
 'use client'
 import { trackEvent } from "@/actions/events";
-import Button from "@/components/ui/Button";
-import Card from "@/components/ui/Card";
 import NoticeBox from "@/components/ui/NoticeBox";
 import { EVENT_NAMES, EventName } from "@/types/events";
 import { useEffect, useState } from "react";
+import CopyLinkCard from "./CopyLinkCard";
 
 type LinkSectionProps = {
     testId: string;
@@ -46,23 +45,27 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
 
     return (
         <section className="flex flex-col gap-4 py-10 px-8">
-            <Card className="flex flex-col gap-4 w-full">
-                <div className="flex flex-col gap-1">
-                    <p className="font-body font-bold text-accent">응답 링크 - 친구들에게 공유</p>
-                    <p className="font-body text-subtext font-normal text-sm">친구들에게 공유하면 단어를 골라줄 수 있어요</p>
-                    <p className="font-body text-muted font-normal text-sm">{testUrl}</p>
-                </div>
-                <Button variant="primary" onClick={() => handleCopy(testUrl, setCopiedTestLink, EVENT_NAMES.RESPONSE_LINK_COPIED)}>{copiedTestLink ? "복사 완료" : "응답 링크 복사"}</Button>
-            </Card>
+            <CopyLinkCard
+                title="응답 링크 · 친구에게 공유"
+                description="친구들에게 공유하면 나에 대한 단어를 골라줄 수 있어요"
+                url={testUrl}
+                buttonVariant="primary"
+                desktopButtonLabel="복사"
+                mobileButtonLabel="응답 링크 복사하기"
+                copied={copiedTestLink}
+                onCopy={() => handleCopy(testUrl, setCopiedTestLink, EVENT_NAMES.RESPONSE_LINK_COPIED)}
+            />
 
-            <Card className="flex flex-col gap-4 w-full">
-                <div className="flex flex-col gap-1">
-                    <p className="font-body font-bold text-accent">결과 링크 - 본인 보관용</p>
-                    <p className="font-body text-subtext font-normal text-sm">친구들의 응답이 쌓이면 여기서 확인할 수 있어요</p>
-                    <p className="font-body text-muted font-normal text-sm">{resultUrl}</p>
-                </div>
-                <Button variant="secondary" onClick={() => handleCopy(resultUrl, setCopiedResultLink)}>{copiedResultLink ? "복사 완료" : "결과 링크 복사"}</Button>
-            </Card>
+            <CopyLinkCard
+                title="결과 링크 · 본인 보관용"
+                description="친구들의 응답이 쌓이면 여기서 결과를 확인할 수 있어요"
+                url={resultUrl}
+                buttonVariant="secondary"
+                desktopButtonLabel="복사"
+                mobileButtonLabel="결과 링크 복사하기"
+                copied={copiedResultLink}
+                onCopy={() => handleCopy(resultUrl, setCopiedResultLink)}
+            />
 
             <NoticeBox variant="warn">결과 링크는 현재 기기에 자동 저장됩니다. 다만 브라우저 데이터를 삭제하거나 다른 기기에서 접속하면 사라질 수 있어요. 결과를 오래 보관하고 싶다면 링크를 복사해 저장해주세요.</NoticeBox>
         </section>
