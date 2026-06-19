@@ -154,10 +154,11 @@ export default function DesignSystemPage() {
 
             <Section title="ResultChip">
                 <div className="flex flex-wrap gap-2">
-                    <ResultChip text="높음" percent={75} />
-                    <ResultChip text="중간" percent={34} />
-                    <ResultChip text="낮음" percent={0} />
-                    <ResultChip text="없음" percent={null} />
+                    <ResultChip text="따뜻한" variant="solid" />
+                    <ResultChip text="따뜻한" percent={88} variant="solid" />
+                    <ResultChip text="공감하는" percent={63} variant="soft" />
+                    <ResultChip text="현실적인, 실용적인" variant="outline-accent" />
+                    <ResultChip text="똑똑한" variant="outline-muted" />
                 </div>
             </Section>
         </main>

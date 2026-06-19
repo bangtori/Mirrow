@@ -1,9 +1,9 @@
-import ResultChip from "../ui/ResultChip";
+import ResultChip, { ResultChipVariant } from "../ui/ResultChip";
 
 type JohariType = 'open' | 'blind' | 'hidden' | 'unknown'
 interface JohariPanelProps {
     type: JohariType;
-    words: Array<{ word: string, percent: number | null }>;
+    words: Array<{ word: string, percent?: number, variant?: ResultChipVariant }>;
     locked?: boolean;
 }
 
@@ -31,7 +31,7 @@ export default function JohariPanel({ type, words, locked = false }: JohariPanel
                     <p className="mt-2 text-sm text-subtext">응답자가 5명 이상일 때 이 영역에 단어가 표시됩니다.</p>
                 ) : (
                     words.map((word, index) => (
-                        <ResultChip key={index} text={word.word} percent={word.percent} />
+                        <ResultChip key={index} text={word.word} percent={word.percent} variant={word.variant} />
                     ))
                 )}
             </div>
