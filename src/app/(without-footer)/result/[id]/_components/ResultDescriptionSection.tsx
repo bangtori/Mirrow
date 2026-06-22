@@ -7,7 +7,7 @@ const JOHARI_INTERPRETATIONS = [
 ]
 export default function ResultDescriptionSection() {
     return (
-        <section className="flex flex-col px-8">
+        <section className="flex flex-col">
             <Card variant="accent">
                 <h3 className='font-bold mb-2'>조하리 창 해석</h3>
                 <ul className='flex flex-col gap-2 text-sm list-disc pl-5 marker:text-muted'>

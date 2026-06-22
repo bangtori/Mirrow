@@ -1,5 +1,9 @@
-import JohariPanel from "@/components/mirrow/JohariPanel";
+'use client';
+
 import { ResultModel } from "@/types";
+import { useState } from "react";
+import JohariPanel from "./JohariPanel";
+import UnknownWordsModal from "./UnknownWordsModal";
 
 type ResultBodySectionProps = {
     resultModel: ResultModel;
@@ -7,6 +11,8 @@ type ResultBodySectionProps = {
 }
 
 export default function ResultBodySection({ resultModel, responseCount }: ResultBodySectionProps) {
+    const [isUnknownOpen, setIsUnknownOpen] = useState(false);
+    const isPreview = responseCount < 3;
     const {
         open,
         blind,
@@ -15,11 +21,30 @@ export default function ResultBodySection({ resultModel, responseCount }: Result
     } = resultModel.result;
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 py-10">
-            <JohariPanel type="open" words={open.map(({ word, percentage }) => ({ word: word.korean, percent: percentage }))} />
-            <JohariPanel type="blind" words={blind.map(({ word, percentage }) => ({ word: word.korean, percent: percentage }))} />
-            <JohariPanel type="hidden" words={hidden.map((word) => ({ word: word.korean, variant: "outline-muted" }))} />
-            <JohariPanel type="unknown" words={unknown.map((word) => ({ word: word.korean, variant: "outline-muted" }))} locked={responseCount < 5} />
-        </div>
+        <>
+            <div className="grid grid-cols-1 gap-4 py-10 md:grid-cols-2 md:gap-8">
+                <JohariPanel
+                    type="open"
+                    words={open.map(({ word, percentage }) => ({ word: word.korean, percent: percentage }))}
+                    isPreview={isPreview}
+                />
+                <JohariPanel
+                    type="blind"
+                    words={blind.map(({ word, percentage }) => ({ word: word.korean, percent: percentage }))}
+                    isPreview={isPreview}
+                />
+                <JohariPanel type="hidden" words={hidden.map((word) => ({ word: word.korean, variant: "outline-muted" }))} />
+                <JohariPanel
+                    type="unknown"
+                    words={unknown.map((word) => ({ word: word.korean, variant: "outline-muted" }))}
+                    onUnknownOpen={() => setIsUnknownOpen(true)}
+                />
+            </div>
+            <UnknownWordsModal
+                words={unknown.map((word) => word.korean)}
+                isOpen={isUnknownOpen}
+                onClose={() => setIsUnknownOpen(false)}
+            />
+        </>
     )
 }
