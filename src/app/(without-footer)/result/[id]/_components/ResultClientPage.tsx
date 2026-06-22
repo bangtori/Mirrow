@@ -38,7 +38,7 @@ export default function ResultClientPage({ data, ownerName, testId }: ResultClie
             <ResultHeaderSection name={ownerName} responseCount={data.responses_count} />
             {isPreview && <ResultPreviewNotice responseCount={data.responses_count} />}
             <ResultBodySection resultModel={data} responseCount={data.responses_count} />
-            {!isPreview && <ResultDescriptionSection />}
+            {!isPreview && <ResultDescriptionSection result={data.result} />}
             {isPreview ? (
                 <div className="pb-10">
                     <p className="mb-2 flex flex-wrap justify-center gap-x-1 text-center text-body-md text-subtext md:text-body-lg">
