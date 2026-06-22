@@ -20,7 +20,7 @@ export default function ResultChip({
     const resolvedVariant = ((): ResultChipVariant => {
         if (variant) return variant;
         if (percent !== undefined) {
-            return percent > 60 ? "solid" : "soft";
+            return percent >= 50 ? "solid" : "soft";
         }
         return "outline-muted";
     })()
