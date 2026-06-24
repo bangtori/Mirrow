@@ -4,11 +4,13 @@ import { MirrowItem } from "@/types";
 import { Copy } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useToast } from "@/hooks/useToast";
 type MirrowListCellProps = {
     mirrow: MirrowItem;
 }
 export default function MirrowListCell({ mirrow }: MirrowListCellProps) {
     const router = useRouter();
+    const { showToast } = useToast();
     const [copied, setCopied] = useState(false);
     const handleResultClick = (resultUrl: string) => {
         router.push(resultUrl);
@@ -22,9 +24,16 @@ export default function MirrowListCell({ mirrow }: MirrowListCellProps) {
             setTimeout(() => {
                 setCopied(false);
             }, 1500);
+            showToast({
+                variant: "success",
+                title: "클립보드에 복사되었습니다.",
+            });
         } catch (error) {
             console.error(error);
-            alert("링크 복사에 실패했습니다. 다시 시도해주세요.")
+            showToast({
+                variant: "error",
+                title: "복사에 실패했습니다. 잠시 후 다시 시도해주세요.",
+            });
         }
 
     };

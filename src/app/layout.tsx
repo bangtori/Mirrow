@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { notoSansKr, jetBrainsMono, gowunBatang } from "./fonts";
+import ToastProvider from "@/components/ui/ToastProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mirrow.kr"),
@@ -34,7 +35,7 @@ export default function RootLayout({
       className={`${notoSansKr.variable} ${jetBrainsMono.variable} ${gowunBatang.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-card md:px-4 lg:px-0">
-        {children}
+        <ToastProvider>{children}</ToastProvider>
       </body>
     </html >
   );

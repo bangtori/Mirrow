@@ -9,6 +9,7 @@ import { trackEvent } from "@/actions/events";
 import { EVENT_NAMES } from "@/types/events";
 import ResultPreviewNotice from "./ResultPreviewNotice";
 import { Copy } from "lucide-react";
+import { useToast } from "@/hooks/useToast";
 
 type ResultClientPageProps = {
     data: ResultModel;
@@ -18,20 +19,26 @@ type ResultClientPageProps = {
 
 export default function ResultClientPage({ data, ownerName, testId }: ResultClientPageProps) {
     const router = useRouter()
+    const { showToast } = useToast();
     const isPreview = data.responses_count < 3;
 
     const handleShareButton = async () => {
         try {
             const url = `${window.location.origin}/response/${testId}`;
             await navigator.clipboard.writeText(url);
+            showToast({
+                variant: "success",
+                title: "클립보드에 복사되었습니다.",
+            });
 
             await trackEvent(EVENT_NAMES.RESPONSE_LINK_RESHARED, testId);
         } catch (error) {
             console.error(error)
-            alert("링크 복사에 실패했습니다.")
+            showToast({
+                variant: "error",
+                title: "복사에 실패했습니다. 잠시 후 다시 시도해주세요.",
+            });
         }
-
-        // TODO: - 토스트 메시지로 복사 완료 안내 메시지 띄우기
     };
     return (
         <section className="flex flex-col px-6">

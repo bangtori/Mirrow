@@ -3,6 +3,7 @@ import { trackEvent } from "@/actions/events";
 import NoticeBox from "@/components/ui/NoticeBox";
 import { EVENT_NAMES, EventName } from "@/types/events";
 import { useEffect, useState } from "react";
+import { useToast } from "@/hooks/useToast";
 import CopyLinkCard from "./CopyLinkCard";
 
 type LinkSectionProps = {
@@ -11,6 +12,7 @@ type LinkSectionProps = {
 }
 
 export default function LinkSection({ testId, resultId }: LinkSectionProps) {
+    const { showToast } = useToast();
     const [origin, setOrigin] = useState('');
     useEffect(() => {
         const timerId = window.setTimeout(() => {
@@ -29,6 +31,11 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
     const handleCopy = async (url: string, setCopied: (state: boolean) => void, eventName?: EventName,) => {
         try {
             await navigator.clipboard.writeText(url);
+            showToast({
+                variant: "success",
+                title: "클립보드에 복사되었습니다.",
+            });
+
             if (eventName) {
                 await trackEvent(eventName, testId);
             }
@@ -39,7 +46,10 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
             }, 1500);
         } catch (error) {
             console.error(error);
-            alert("링크 복사에 실패했습니다. 다시 시도해주세요.")
+            showToast({
+                variant: "error",
+                title: "복사에 실패했습니다. 잠시 후 다시 시도해주세요.",
+            });
         }
     };
 
