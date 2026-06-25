@@ -74,7 +74,7 @@ export default function LinkSection({ testId, resultId }: LinkSectionProps) {
                 desktopButtonLabel="복사"
                 mobileButtonLabel="결과 링크 복사하기"
                 copied={copiedResultLink}
-                onCopy={() => handleCopy(resultUrl, setCopiedResultLink)}
+                onCopy={() => handleCopy(resultUrl, setCopiedResultLink, EVENT_NAMES.RESULT_LINK_COPIED)}
             />
 
             <NoticeBox variant="warn">결과 링크는 현재 기기에 자동 저장됩니다. 다만 브라우저 데이터를 삭제하거나 다른 기기에서 접속하면 사라질 수 있어요. 결과를 오래 보관하고 싶다면 링크를 복사해 저장해주세요.</NoticeBox>
