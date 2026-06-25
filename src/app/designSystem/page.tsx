@@ -1,6 +1,6 @@
 "use client";
 
-import { Copy, MessageCircle, Plus } from "lucide-react";
+import { Check, Copy, Info, MessageCircle, Plus, RotateCcw, TriangleAlert } from "lucide-react";
 import { useState } from "react";
 
 import Badge from "@/components/ui/Badge";
@@ -13,6 +13,7 @@ import SearchInput from "@/components/ui/SearchInput";
 import TrayChip from "@/components/ui/TrayChip";
 import WordChip from "@/components/ui/WordChip";
 import { words } from "@/data/words";
+import { useToast } from "@/hooks/useToast";
 
 function Section({
     title,
@@ -30,6 +31,7 @@ function Section({
 }
 
 export default function DesignSystemPage() {
+    const { showToast } = useToast();
     const [inputValue, setInputValue] = useState("홍길동");
     const [searchValue, setSearchValue] = useState("");
     const [selectedWordIds, setSelectedWordIds] = useState<number[]>([words[0].id]);
@@ -111,6 +113,68 @@ export default function DesignSystemPage() {
                     <NoticeBox variant="info" icon={<MessageCircle size={16} />}>
                         아이콘 커스텀이 가능한 안내 메시지입니다.
                     </NoticeBox>
+                </div>
+            </Section>
+
+            <Section title="Toast">
+                <div className="flex flex-wrap gap-2">
+                    <Button
+                        icon={<Check size={16} />}
+                        onClick={() =>
+                            showToast({
+                                variant: "success",
+                                title: "응답 링크를 복사했어요",
+                                description: "친구에게 붙여넣어 공유해 보세요",
+                            })
+                        }
+                    >
+                        성공 토스트
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        icon={<Info size={16} />}
+                        onClick={() =>
+                            showToast({
+                                variant: "info",
+                                title: "6개를 모두 선택했어요",
+                                description: "이제 제출할 수 있어요",
+                            })
+                        }
+                    >
+                        안내 토스트
+                    </Button>
+                    <Button
+                        variant="secondary"
+                        icon={<TriangleAlert size={16} />}
+                        onClick={() =>
+                            showToast({
+                                variant: "error",
+                                title: "링크 복사에 실패했어요",
+                                description: "잠시 후 다시 시도해 주세요",
+                            })
+                        }
+                    >
+                        오류 토스트
+                    </Button>
+                    <Button
+                        variant="ghost"
+                        icon={<RotateCcw size={16} />}
+                        onClick={() =>
+                            showToast({
+                                title: "단어 선택을 해제했어요",
+                                action: {
+                                    label: "실행취소",
+                                    onClick: () =>
+                                        showToast({
+                                            variant: "success",
+                                            title: "단어 선택을 복원했어요",
+                                        }),
+                                },
+                            })
+                        }
+                    >
+                        실행취소 토스트
+                    </Button>
                 </div>
             </Section>
 

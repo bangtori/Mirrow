@@ -1,6 +1,6 @@
 'use client'
 import ResultHeaderSection from "./ResultHeaderSection";
-import { ResultModel } from "@/types";
+import { AnalysisPromptData, ResultModel } from "@/types";
 import ResultBodySection from "./ResultBodySection";
 import ResultDescriptionSection from "./ResultDescriptionSection";
 import Button from "@/components/ui/Button";
@@ -9,36 +9,75 @@ import { trackEvent } from "@/actions/events";
 import { EVENT_NAMES } from "@/types/events";
 import ResultPreviewNotice from "./ResultPreviewNotice";
 import { Copy } from "lucide-react";
+import { useToast } from "@/hooks/useToast";
+import { createAnalysisPromptText } from "@/utils/analysisPrompt";
 
 type ResultClientPageProps = {
     data: ResultModel;
     ownerName: string;
     testId: string;
+    analysisPromptData: AnalysisPromptData;
 }
 
-export default function ResultClientPage({ data, ownerName, testId }: ResultClientPageProps) {
+export default function ResultClientPage({ data, ownerName, testId, analysisPromptData }: ResultClientPageProps) {
     const router = useRouter()
+    const { showToast } = useToast();
     const isPreview = data.responses_count < 3;
+    const analysisPromptText = createAnalysisPromptText(analysisPromptData);
 
     const handleShareButton = async () => {
         try {
             const url = `${window.location.origin}/response/${testId}`;
             await navigator.clipboard.writeText(url);
+            showToast({
+                variant: "success",
+                title: "클립보드에 복사되었습니다.",
+            });
 
             await trackEvent(EVENT_NAMES.RESPONSE_LINK_RESHARED, testId);
         } catch (error) {
             console.error(error)
-            alert("링크 복사에 실패했습니다.")
+            showToast({
+                variant: "error",
+                title: "복사에 실패했습니다. 잠시 후 다시 시도해주세요.",
+            });
         }
-
-        // TODO: - 토스트 메시지로 복사 완료 안내 메시지 띄우기
     };
+
+    const handleAnalysisPromptCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(analysisPromptText);
+            showToast({
+                variant: "success",
+                title: "클립보드에 복사되었습니다.",
+            });
+        } catch (error) {
+            console.error(error);
+            showToast({
+                variant: "error",
+                title: "복사에 실패했습니다. 잠시 후 다시 시도해주세요.",
+            });
+        }
+    };
+
     return (
         <section className="flex flex-col px-6">
             <ResultHeaderSection name={ownerName} responseCount={data.responses_count} />
             {isPreview && <ResultPreviewNotice responseCount={data.responses_count} />}
             <ResultBodySection resultModel={data} responseCount={data.responses_count} />
-            {!isPreview && <ResultDescriptionSection result={data.result} />}
+            {!isPreview && (
+                <div className="flex flex-col">
+                    <ResultDescriptionSection result={data.result} />
+                    <Button
+                        variant="ghost"
+                        className="mt-2 self-center"
+                        icon={<Copy size={16} />}
+                        onClick={handleAnalysisPromptCopy}
+                    >
+                        GPT 심층 분석 프롬프트 복사
+                    </Button>
+                </div>
+            )}
             {isPreview ? (
                 <div className="pb-10">
                     <p className="mb-2 flex flex-wrap justify-center gap-x-1 text-center text-body-md text-subtext md:text-body-lg">

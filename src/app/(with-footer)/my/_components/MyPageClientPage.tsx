@@ -18,8 +18,11 @@ export default function MyPageClientPage() {
     useEffect(() => {
         const timerId = window.setTimeout(() => {
             const savedMirrowList = getStorage(STORAGE_KEYS.LIST) ?? [];
+            const sortedMirrowList = [...savedMirrowList].sort(
+                (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+            );
 
-            setMirrowList(savedMirrowList);
+            setMirrowList(sortedMirrowList);
             setIsStorageLoaded(true);
         }, 0);
 
