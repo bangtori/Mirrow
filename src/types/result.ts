@@ -50,6 +50,19 @@ export type ResultModel = {
   result: JohariResult;
 };
 
+export type AnalysisPromptData = {
+  owner: {
+    name: string;
+    selectedWords: string[];
+  };
+  respondentCount: number;
+  respondentWords: {
+    word: string;
+    count: number;
+    percent: number;
+  }[];
+};
+
 export type VisitorComparison = {
   shared: Word[]; // 교집합 - 둘 다 선택
   onlyVisitor: Word[]; // 응답자만 선택

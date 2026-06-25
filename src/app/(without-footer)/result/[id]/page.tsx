@@ -3,6 +3,7 @@ import ResultClientPage from "./_components/ResultClientPage";
 import { getResult } from "@/actions/result";
 import { getOwnerNameByResultToken } from "@/actions/tests";
 import { calcJohariResult } from "@/utils/johari";
+import { createAnalysisPromptData } from "@/utils/analysisPrompt";
 
 type Props = { params: Promise<{ id: string }> }
 
@@ -26,8 +27,14 @@ export default async function ResultPage({ params }: Props) {
     const { id } = await params;
     const result = await getResult(id);
     const resultModel = calcJohariResult(result.ownerInfo.self_words, result.responses);
+    const analysisPromptData = createAnalysisPromptData(result);
 
     return (
-        <ResultClientPage data={resultModel} ownerName={result.ownerInfo.name} testId={result.ownerInfo.id} />
+        <ResultClientPage
+            data={resultModel}
+            ownerName={result.ownerInfo.name}
+            testId={result.ownerInfo.id}
+            analysisPromptData={analysisPromptData}
+        />
     );
 }
