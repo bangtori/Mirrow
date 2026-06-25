@@ -51,6 +51,11 @@ export default function ResultClientPage({ data, ownerName, testId, analysisProm
                 variant: "success",
                 title: "클립보드에 복사되었습니다.",
             });
+            await trackEvent(
+                EVENT_NAMES.ANALYSIS_PROMPT_COPIED,
+                testId,
+                { respondent_count: data.responses_count },
+            );
         } catch (error) {
             console.error(error);
             showToast({
